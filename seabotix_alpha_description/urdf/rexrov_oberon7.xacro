@@ -23,7 +23,7 @@
   <!-- Include the ROV macro file -->
   <xacro:include filename="$(find seabotix_alpha_description)/urdf/rexrov_base.xacro"/>
   <xacro:include filename="$(find seabotix_alpha_description)/urdf/rexrov.gazebo.xacro"/>
-  <xacro:include filename="$(find seabotix_alpha_description)/urdf/oberon7_default.xacro" />
+  <!-- <xacro:include filename="$(find seabotix_alpha_description)/urdf/oberon7_default.xacro" /> -->
   <xacro:include filename="$(find seabotix_alpha_description)/urdf/alpha_default.xacro" />
 
   <xacro:uuv_forward_looking_sonar
@@ -79,18 +79,18 @@
         <debug>$(arg debug)</debug>
         <!-- Adding the hydrodynamic and hydrostatic parameters for the vehicle-->
         <xacro:rexrov_hydro_model namespace="$(arg namespace)"/>
-        <xacro:oberon7_hydro_model namespace="oberon7"/>
+        <!-- <xacro:oberon7_hydro_model namespace="oberon7"/> -->
         <xacro:alpha_hydro_model namespace="alpha"/>
       </plugin>
     </gazebo>
   </xacro:rexrov_base>
 
-  <xacro:oberon7 namespace="oberon7" parent="$(arg namespace)/base_link">
+  <!-- <xacro:oberon7 namespace="oberon7" parent="$(arg namespace)/base_link">
     <origin xyz="1.3 -0.5 -0.615" rpy="0 0 0"/>
-  </xacro:oberon7>
+  </xacro:oberon7> -->
 
   <xacro:alpha namespace="alpha" parent="$(arg namespace)/base_link">
-    <origin xyz="1.3 0.5 -0.615" rpy="0 0 0"/>
+    <origin xyz="0.3 0 0.1" rpy="0 0 0"/>
   </xacro:alpha>
 
   <gazebo>

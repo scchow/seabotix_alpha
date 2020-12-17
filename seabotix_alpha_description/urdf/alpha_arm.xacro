@@ -57,6 +57,9 @@
             <mass value="0.341"/>
             <origin xyz="-0.075 -0.006 -0.003"/>
             <inertia ixx="0.000099" ixy="0.000139" ixz="0.000115" iyy="0.002920" iyz="0.000003" izz="0.002934"/>
+            <!-- <inertia ixx="${(1/12)*0.341*(0.150)**2 + 0.25*0.341*0.020**2}" ixy="0.0" ixz="0.0" 
+            iyy="${(1/12)*0.341*(0.150)**2 + 0.25*0.341*0.020**2}" iyz="0.0" 
+            izz="${0.5*0.341*0.020**2}"/> -->
             </inertial>
         </link>
         
@@ -107,8 +110,7 @@
             <inertial>
             <mass value="0.429"/>
             <origin xyz="0.073 0.0 0.0"/>
-            <!-- <inertia ixx="0.000087" ixy="-0.000076" ixz="-0.000010" iyy="0.003190" iyz="0.000000" izz="0.003213"/>
-            </inertial> -->
+            <!-- <inertia ixx="0.000087" ixy="-0.000076" ixz="-0.000010" iyy="0.003190" iyz="0.000000" izz="0.003213"/> -->
             <inertia ixx="${(1/12)*0.429*(0.040)**2 + 0.25*0.429*0.020**2}" ixy="0.25" ixz="0.0" 
             iyy="${(1/12)*0.429*(0.040)**2 + 0.25*0.429*0.020**2}" iyz="0.0" 
             izz="${0.5*0.429*0.020**2}"/>
@@ -132,8 +134,7 @@
             <inertial>
             <mass value="0.115"/>
             <origin xyz="0.017 -0.026 -0.002"/>
-            <!-- <inertia ixx="0.000120" ixy="-0.000061" ixz="-0.000001" iyy="0.000062" iyz="0.000000" izz="0.000156"/>
-            </inertial> -->
+            <!-- <inertia ixx="0.000120" ixy="-0.000061" ixz="-0.000001" iyy="0.000062" iyz="0.000000" izz="0.000156"/> -->
             <inertia ixx="${(1/12)*0.115*(0.040)**2 + 0.25*0.115*0.020**2}" ixy="0.0" ixz="0.0" 
             iyy="${(1/12)*0.115*(0.040)**2 + 0.25*0.115*0.020**2}" iyz="0.0" 
             izz="${0.5*0.115*0.020**2}"/>
@@ -157,8 +158,7 @@
             <inertial>
             <mass value="0.333"/>
             <origin xyz="0.0 0.003 -0.098"/>
-            <!-- <inertia ixx="0.003709" ixy="-0.000002" ixz="-0.000004" iyy="0.003734" iyz="0.000000" izz="0.000079"/>
-            </inertial> -->
+            <!-- <inertia ixx="0.003709" ixy="-0.000002" ixz="-0.000004" iyy="0.003734" iyz="0.000000" izz="0.000079"/> -->
             <inertia ixx="${(1/12)*0.333*(0.040)**2 + 0.25*0.333*0.140**2}" ixy="0.0" ixz="0.0" 
             iyy="${(1/12)*0.333*(0.040)**2 + 0.25*0.333*0.140**2}" iyz="0.0" 
             izz="${0.5*0.333*0.140**2}"/>
@@ -170,26 +170,28 @@
         
         <link name="${namespace}/jaw1">
             <visual>
-            <geometry>
-                <mesh filename="package://reach_system_one_support/meshes/reach5mini/visual/Jaw1.stl" />
-            </geometry>
-            <origin rpy="0 0 0" xyz="0 0 0"/>
-            <material name="black_arm"/>
+                <geometry>
+                    <mesh filename="package://reach_system_one_support/meshes/reach5mini/visual/Jaw1.stl" />
+                </geometry>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <material name="black_arm"/>
             </visual>
             <collision>
-            <geometry>
-                <box size="0.03 0.09 0.01"/>
-            </geometry>
-            <origin rpy="0 0 0" xyz="-0.01 -0.045 0"/>
+                <geometry>
+                    <!-- <box size="0.03 0.09 0.01"/> -->
+                    <box size="0.02 0.07 0.01"/>
+                </geometry>
+                <!-- <origin rpy="0 0 0" xyz="-0.01 -0.045 0"/> -->
+                <origin rpy="0 0 0" xyz="-0.02 -0.045 0"/>
             </collision>
             <!-- Made up inertias from wrist -->
             <inertial>
-            <mass value="0.333"/>
-            <origin xyz="0.0 0.003 -0.098"/>
-            <!-- <inertia ixx="0.003709" ixy="-0.000002" ixz="-0.000004" iyy="0.003734" iyz="0.0" izz="0.000079"/> -->
-            <inertia ixx="${1/12*0.333*(0.09**2+0.01**2)}" ixy="0.0" ixz="-0.0" 
-            iyy="${1/12*0.333*(0.03**2+0.01**2)}" iyz="0.0" 
-            izz="${1/12*0.333*(0.03**2+0.09**2)}"/>
+                <mass value="0.333"/>
+                <origin xyz="0.0 0.003 -0.098"/>
+                <!-- <inertia ixx="0.003709" ixy="-0.000002" ixz="-0.000004" iyy="0.003734" iyz="0.0" izz="0.000079"/> -->
+                <inertia ixx="${1/12*0.333*(0.09**2+0.01**2)}" ixy="0.0" ixz="-0.0" 
+                iyy="${1/12*0.333*(0.03**2+0.01**2)}" iyz="0.0" 
+                izz="${1/12*0.333*(0.03**2+0.09**2)}"/>
             </inertial>
         </link>
 
@@ -202,10 +204,12 @@
             <material name="black_arm"/>      
             </visual>
             <collision>
-            <geometry>
-                <box size="0.03 0.09 0.01"/>
-            </geometry>
-            <origin rpy="0 0 0" xyz="0.01 -0.045 0"/>
+                <geometry>
+                    <!-- <box size="0.03 0.09 0.01"/> -->
+                    <box size="0.02 0.07 0.01"/>
+                </geometry>
+                <!-- <origin rpy="0 0 0" xyz="0.01 -0.045 0"/> -->
+                <origin rpy="0 0 0" xyz="0.02 -0.045 0"/>
             </collision>
             <!-- Made up inertias from wrist -->
             <inertial>
@@ -225,6 +229,7 @@
             <origin xyz="0 0 0" rpy="0 0 0"/> <!--Was <origin xyz="0 0 0" rpy="0 0 3.141592/> before-->
             <axis xyz="0 0 1"/>
             <limit effort="9.0" lower="0.0" upper = "6.2" velocity="0.5"/>
+            <dynamics damping="0.1" friction="0.1"/>
         </joint>
         <xacro:simple_transmission joint="${namespace}/joint1" />
 
@@ -234,6 +239,7 @@
             <origin xyz="0.020 0 0.046" rpy="1.57075 1.3 0"/>
             <axis xyz="0 0 1"/>
             <limit effort="9.0" lower="0.0" upper = "3.5" velocity="0.5"/>
+            <dynamics damping="0.1" friction="0.1"/>
         </joint>
         <xacro:simple_transmission joint="${namespace}/joint2" />
 
@@ -243,6 +249,7 @@
             <origin xyz="0.15 0 0" rpy="3.1415 0 1.3"/>
             <axis xyz="0 0 1"/>
             <limit effort="9.0" lower="0.0" upper = "3.5" velocity="0.5"/>
+            <dynamics damping="0.1" friction="0.1"/>
         </joint>
         <xacro:simple_transmission joint="${namespace}/joint3" />
 
@@ -252,6 +259,7 @@
             <origin xyz="0.020 0 0" rpy="-1.57075 0 0"/>
             <axis xyz="0 0 1"/>
             <limit effort="5.0" lower="0.0" upper = "6.0" velocity="1.0"/>
+            <dynamics damping="0.1" friction="0.1"/>
         </joint>
         <xacro:simple_transmission joint="${namespace}/joint4" />
 
@@ -261,6 +269,7 @@
             <origin xyz="0.015 0 -0.140" rpy="1.57075 0 0"/>
             <axis xyz="0 0 1"/>
             <limit effort="5.0" lower="0.0" upper = "0.5" velocity="0.5"/>
+            <dynamics damping="0.1" friction="0.1"/>
         </joint>
         <xacro:simple_transmission joint="${namespace}/joint5" />
 
@@ -270,6 +279,7 @@
             <origin xyz="-0.015 0 -0.140" rpy="1.57075 0 0"/>
             <axis xyz="0 0 -1"/>
             <limit effort="5.0" lower="0.0" upper = "0.5" velocity="0.5"/>
+            <dynamics damping="0.1" friction="0.1"/>
         </joint>
         <xacro:simple_transmission joint="${namespace}/joint6" />
 
