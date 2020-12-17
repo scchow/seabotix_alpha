@@ -14,15 +14,15 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<robot name="alpha" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="oberon7" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- Import serial arm -->
-  <xacro:include filename="$(find seabotix_alpha_description)/urdf/alpha_arm.xacro" />
+  <xacro:include filename="$(find seabotix_alpha_description)/urdf/serial_arm.xacro" />
   <!-- Import Gazebo specific macros -->
-  <xacro:include filename="$(find seabotix_alpha_description)/urdf/alpha_arm.gazebo.xacro" />
+  <xacro:include filename="$(find seabotix_alpha_description)/urdf/serial_arm.gazebo.xacro" />
 
-  <xacro:macro name="alpha" params="namespace parent *origin">
-    <xacro:alpha_arm namespace="${namespace}"/>
+  <xacro:macro name="oberon7" params="namespace parent *origin">
+    <xacro:oberon7_serial_arm namespace="${namespace}"/>
 
     <joint name="${namespace}/anchor" type="revolute">
       <parent link="${parent}"/>
