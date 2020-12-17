@@ -4,10 +4,6 @@
 
   <xacro:include filename="$(find seabotix_alpha_description)/urdf/alpha_arm_ft_sensor.xacro" />
   <xacro:macro name="alpha_gazebo_macro" params="namespace">
-    <gazebo reference="${namespace}/base">
-      <selfCollide>false</selfCollide>
-      <maxContacts>1</maxContacts>
-    </gazebo>
 
     <gazebo reference="${namespace}/base_link">
       <selfCollide>false</selfCollide>
@@ -78,11 +74,11 @@
   <xacro:macro name="alpha_hydro_model" params="namespace">
     <link name="${namespace}/base_link">
       <volume>${pi*(0.020**2)*0.150}</volume>
-      <!-- <box>
-        <width>${base_width}</width>
-        <length>${base_length}</length>
-        <height>${base_height}</height>
-      </box> -->
+      <box>
+        <width>${0.020*2}</width>
+        <height>${0.020*2}</height>
+        <length>${0.150}</length>
+      </box>
       <hydrodynamic_model>
         <type>cylinder</type>
         <axis>i</axis>
@@ -91,11 +87,11 @@
 
     <link name="${namespace}/shoulder_link">
       <volume>${pi*(0.020**2)*0.066}</volume>
-      <!-- <box>
-        <width>${shoulder_link_width}</width>
-        <length>${shoulder_link_length}</length>
-        <height>${shoulder_link_height}</height>
-      </box> -->
+      <box>
+        <width>${0.020*2}</width>
+        <height>${0.020*2}</height>
+        <length>${0.066}</length>
+      </box>
       <hydrodynamic_model>
         <type>cylinder</type>
         <axis>i</axis>
@@ -104,11 +100,11 @@
 
     <link name="${namespace}/upper_arm_link">
       <volume>${pi*(0.020**2)*0.1445}</volume>
-      <!-- <box>
-        <width>${upper_arm_width}</width>
-        <length>${upper_arm_length}</length>
-        <height>${upper_arm_height}</height>
-      </box> -->
+      <box>
+        <width>${0.020*2}</width>
+        <height>${0.020*2}</height>
+        <length>${0.1445}</length>
+      </box>
       <hydrodynamic_model>
         <type>cylinder</type>
         <axis>i</axis>
@@ -117,11 +113,11 @@
 
     <link name="${namespace}/forearm_link">
       <volume>${pi*(0.020**2)*0.040}</volume>
-      <!-- <box>
-        <width>${elbow_link_width}</width>
-        <length>${elbow_link_length}</length>
-        <height>${elbow_link_height}</height>
-      </box> -->
+      <box>
+        <width>${0.020*2}</width>
+        <height>${0.020*2}</height>
+        <length>${0.040}</length>
+      </box>
       <hydrodynamic_model>
         <type>cylinder</type>
         <axis>i</axis>
@@ -130,11 +126,11 @@
 
     <link name="${namespace}/wrist_link">
       <volume>${pi*(0.020**2)*0.140}</volume>
-      <!-- <box>
-        <width>${wrist_width}</width>
-        <length>${wrist_length}</length>
-        <height>${wrist_height}</height>
-      </box> -->
+      <box>
+        <width>${0.020*2}</width>
+        <height>${0.020*2}</height>
+        <length>${0.140}</length>
+      </box>
       <hydrodynamic_model>
         <type>cylinder</type>
         <axis>i</axis>

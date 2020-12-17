@@ -24,7 +24,7 @@
           <hardwareInterface>EffortJointInterface</hardwareInterface>
         </joint>
         <actuator name="${joint}_motor">
-          <hardwareInterface>EffortJointInterface</hardwareInterface>
+          <!-- <hardwareInterface>EffortJointInterface</hardwareInterface> -->
           <mechanicalReduction>1</mechanicalReduction>
         </actuator>
       </transmission>
@@ -77,7 +77,10 @@
             <inertial>
             <mass value="0.194"/>
             <origin xyz="0.005 -0.001 0.016"/>
-            <inertia ixx="0.000189" ixy="0.000005" ixz="0.000054" iyy="0.000213" iyz="0.000003" izz="0.000067"/>
+            <!-- <inertia ixx="0.000189" ixy="0.000005" ixz="0.000054" iyy="0.000213" iyz="0.000003" izz="0.000067"/> -->
+            <inertia ixx="${(1/12)*0.194*(0.066)**2 + 0.25*0.194*0.020**2}" ixy="0.0" ixz="0.0" 
+            iyy="${(1/12)*0.194*(0.066)**2 + 0.25*0.194*0.020**2}" iyz="0.0" 
+            izz="${0.5*0.194*0.020**2}"/>
             </inertial>
         </link>
             
@@ -104,7 +107,11 @@
             <inertial>
             <mass value="0.429"/>
             <origin xyz="0.073 0.0 0.0"/>
-            <inertia ixx="0.000087" ixy="-0.000076" ixz="-0.000010" iyy="0.003190" iyz="0.000000" izz="0.003213"/>
+            <!-- <inertia ixx="0.000087" ixy="-0.000076" ixz="-0.000010" iyy="0.003190" iyz="0.000000" izz="0.003213"/>
+            </inertial> -->
+            <inertia ixx="${(1/12)*0.429*(0.040)**2 + 0.25*0.429*0.020**2}" ixy="0.25" ixz="0.0" 
+            iyy="${(1/12)*0.429*(0.040)**2 + 0.25*0.429*0.020**2}" iyz="0.0" 
+            izz="${0.5*0.429*0.020**2}"/>
             </inertial>
         </link>
 
@@ -125,7 +132,11 @@
             <inertial>
             <mass value="0.115"/>
             <origin xyz="0.017 -0.026 -0.002"/>
-            <inertia ixx="0.000120" ixy="-0.000061" ixz="-0.000001" iyy="0.000062" iyz="0.000000" izz="0.000156"/>
+            <!-- <inertia ixx="0.000120" ixy="-0.000061" ixz="-0.000001" iyy="0.000062" iyz="0.000000" izz="0.000156"/>
+            </inertial> -->
+            <inertia ixx="${(1/12)*0.115*(0.040)**2 + 0.25*0.115*0.020**2}" ixy="0.0" ixz="0.0" 
+            iyy="${(1/12)*0.115*(0.040)**2 + 0.25*0.115*0.020**2}" iyz="0.0" 
+            izz="${0.5*0.115*0.020**2}"/>
             </inertial>
         </link>	
 
@@ -146,7 +157,11 @@
             <inertial>
             <mass value="0.333"/>
             <origin xyz="0.0 0.003 -0.098"/>
-            <inertia ixx="0.003709" ixy="-0.000002" ixz="-0.000004" iyy="0.003734" iyz="0.000000" izz="0.000079"/>
+            <!-- <inertia ixx="0.003709" ixy="-0.000002" ixz="-0.000004" iyy="0.003734" iyz="0.000000" izz="0.000079"/>
+            </inertial> -->
+            <inertia ixx="${(1/12)*0.333*(0.040)**2 + 0.25*0.333*0.140**2}" ixy="0.0" ixz="0.0" 
+            iyy="${(1/12)*0.333*(0.040)**2 + 0.25*0.333*0.140**2}" iyz="0.0" 
+            izz="${0.5*0.333*0.140**2}"/>
             </inertial>
         </link>
 
@@ -171,7 +186,10 @@
             <inertial>
             <mass value="0.333"/>
             <origin xyz="0.0 0.003 -0.098"/>
-            <inertia ixx="0.003709" ixy="-0.000002" ixz="-0.000004" iyy="0.003734" iyz="0.000000" izz="0.000079"/>
+            <!-- <inertia ixx="0.003709" ixy="-0.000002" ixz="-0.000004" iyy="0.003734" iyz="0.0" izz="0.000079"/> -->
+            <inertia ixx="${1/12*0.333*(0.09**2+0.01**2)}" ixy="0.0" ixz="-0.0" 
+            iyy="${1/12*0.333*(0.03**2+0.01**2)}" iyz="0.0" 
+            izz="${1/12*0.333*(0.03**2+0.09**2)}"/>
             </inertial>
         </link>
 
@@ -193,8 +211,11 @@
             <inertial>
             <mass value="0.333"/>
             <origin xyz="0.0 0.003 -0.098"/>
-            <inertia ixx="0.003709" ixy="-0.000002" ixz="-0.000004" iyy="0.003734" iyz="0.000000" izz="0.000079"/>
-            </inertial>
+            <!-- <inertia ixx="0.003709" ixy="-0.00002" ixz="-0.00004" iyy="0.003734" iyz="0.0" izz="0.000079"/> -->
+            <inertia ixx="${1/12*0.333*(0.09**2+0.01**2)}" ixy="0.0" ixz="-0.0" 
+            iyy="${1/12*0.333*(0.03**2+0.01**2)}" iyz="0.0" 
+            izz="${1/12*0.333*(0.03**2+0.09**2)}"/>
+            </inertial>-->
         </link>
 
 

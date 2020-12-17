@@ -80,7 +80,7 @@
         <!-- Adding the hydrodynamic and hydrostatic parameters for the vehicle-->
         <xacro:rexrov_hydro_model namespace="$(arg namespace)"/>
         <xacro:oberon7_hydro_model namespace="oberon7"/>
-        <!-- <xacro:alpha_hydro_model namespace="alpha"/> -->
+        <xacro:alpha_hydro_model namespace="alpha"/>
       </plugin>
     </gazebo>
   </xacro:rexrov_base>
