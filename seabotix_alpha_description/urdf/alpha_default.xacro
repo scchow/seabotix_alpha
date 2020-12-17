@@ -26,7 +26,7 @@
 
     <joint name="${namespace}/anchor" type="revolute">
       <parent link="${parent}"/>
-      <child link="${namespace}/base"/>
+      <child link="${namespace}/base_link"/>
       <xacro:insert_block name="origin"/>
       <axis xyz="0 1 0"/>
       <limit effort="0" lower="0" upper="0" velocity="0"/>
