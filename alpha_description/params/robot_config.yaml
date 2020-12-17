@@ -1,0 +1,12 @@
+# Main parameters for all Oberon 7P manipulator instances
+# To emulate the conditions for a real controller, the link parameters are
+# loaded in this parameter file instead of being read from Gazebo topics.
+joint_names: [joint1, joint2, joint3, joint4]
+base_link: base_link
+tip_link: wrist_link
+default_configs:
+  home:
+    joint1: 0
+    joint2: 0
+    joint3: 0
+    joint4: 0 

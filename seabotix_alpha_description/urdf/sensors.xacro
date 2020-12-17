@@ -8,21 +8,25 @@
     more examples or add you own custom sensor units.
   -->
 
-  <!-- Mount a GPS. -->
-  <xacro:default_gps namespace="${namespace}" parent_link="${namespace}/base_link" />
 
   <!-- Mount a Pose 3D sensor. -->
-  <xacro:default_pose_3d namespace="${namespace}" parent_link="${namespace}/base_link" />
+  <!-- <xacro:default_pose_3d namespace="${namespace}" parent_link="${namespace}/base_link" /> -->
 
   <!-- Forward-looking sonar sensor -->
-  <xacro:forward_multibeam_p900 namespace="${namespace}" parent_link="${namespace}/base_link">
+  <!-- <xacro:forward_multibeam_p900 namespace="${namespace}" parent_link="${namespace}/base_link">
     <origin xyz="0 0 0" rpy="0 0 0"/>
-  </xacro:forward_multibeam_p900>
+  </xacro:forward_multibeam_p900> -->
 
   <!-- DVL  -->
-  <xacro:default_dvl namespace="${namespace}" parent_link="${namespace}/base_link">
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-  </xacro:default_dvl>
+  <xacro:default_dvl_macro
+    namespace="${namespace}"
+    parent_link="${namespace}/base_link"
+    inertial_reference_frame="${inertial_reference_frame}">
+    <origin xyz="-1.4 0 -0.312" rpy="0 ${0.5*pi} 0"/>
+  </xacro:default_dvl_macro>
+
+ <!-- Magnetometer  -->
+  <xacro:default_magnetometer namespace="${namespace}" parent_link="${namespace}/base_link"/>
 
   <!-- RPT  -->
   <xacro:default_rpt namespace="${namespace}" parent_link="${namespace}/base_link">
@@ -35,13 +39,42 @@
   </xacro:default_pressure>
 
   <!-- IMU  -->
-  <xacro:default_imu namespace="${namespace}" parent_link="${namespace}/base_link">
+  <xacro:default_imu_macro
+    namespace="${namespace}"
+    parent_link="${namespace}/base_link"
+    inertial_reference_frame="${inertial_reference_frame}">
     <origin xyz="0 0 0" rpy="0 0 0"/>
-  </xacro:default_imu>
+  </xacro:default_imu_macro>
 
   <!-- Mount a camera  -->
-  <xacro:default_camera namespace="${namespace}" parent_link="${namespace}/base_link" suffix="">
+  <!-- <xacro:default_camera namespace="${namespace}" parent_link="${namespace}/base_link" suffix="">
     <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:default_camera> -->
+
+<!-- Rexrov systems -->
+
+  <!-- Mount a camera -->
+  <xacro:default_camera namespace="${namespace}" parent_link="${namespace}/base_link" suffix="">
+    <origin xyz="0.3 0 0.4" rpy="0 0.6 0"/>
   </xacro:default_camera>
+
+  <xacro:default_camera namespace="${namespace}" parent_link="${namespace}/base_link" suffix="right">
+    <origin xyz="0.3 -0.1 0.4" rpy="0 0.6 0.4"/>
+  </xacro:default_camera>
+
+  <xacro:default_camera namespace="${namespace}" parent_link="${namespace}/base_link" suffix="left">
+    <origin xyz="0.3 0.1 0.4" rpy="0 0.6 -0.4"/>
+  </xacro:default_camera>
+
+
+  <!-- Mount a GPS. -->
+  <xacro:default_gps namespace="${namespace}" parent_link="${namespace}/base_link" />
+
+  <!-- Mount a Pose 3D sensor. -->
+  <xacro:default_pose_3d_macro
+    namespace="${namespace}"
+    parent_link="${namespace}/base_link"
+    inertial_reference_frame="${inertial_reference_frame}" />
+
 
 </robot>

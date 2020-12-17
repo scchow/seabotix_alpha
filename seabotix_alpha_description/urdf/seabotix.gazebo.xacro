@@ -12,7 +12,7 @@
     <xacro:property name="seabotix_alpha_width"  value="0"/>
     <xacro:property name="seabotix_alpha_height" value="0"/>
 
-    <xacro:macro name="seabotix_alpha_hydro_model" params="namespace">
+    <xacro:macro name="seabotix_hydro_model" params="namespace">
       <!-- List of hydrodynamic models this robot's links -->
       <link name="${namespace}/base_link">
         <!-- This flag will make the link neutrally buoyant -->
@@ -45,20 +45,22 @@
         <!-- 1) Fossen's equation of motion -->
         <hydrodynamic_model>
           <type>fossen</type>
+          <!-- Added mass: see p.28 in Berg2012 -->
           <added_mass>
-            0 0 0 0 0 0
-            0 0 0 0 0 0
-            0 0 0 0 0 0
-            0 0 0 0 0 0
-            0 0 0 0 0 0
-            0 0 0 0 0 0
+             1 0 0 0 0 0
+             0 1 0 0 0 0
+             0 0 1 0 0 0
+             0 0 0 1 0 0
+             0 0 0 0 1 0
+             0 0 0 0 0 1
           </added_mass>
           <!--
             The linear damping coefficients can be provided as a diagonal (6 elements)
             or a full matrix (36 coefficients), like the added-mass coefficients above
           -->
+          <!-- Linear damping: see p.31 in Berg2012 -->
           <linear_damping>
-            0 0 0 0 0 0
+            1 1 1 1 1 1
           </linear_damping>
           <!--
             The linear damping coefficients proportional to the forward speed
@@ -73,8 +75,9 @@
             The quadratic damping coefficients can be provided as a diagonal (6 elements)
             or a full matrix (36 coefficients), like the added-mass coefficients above
           -->
+          <!-- Non-linear damping: see p.30 in Berg2012 -->
           <quadratic_damping>
-            0 0 0 0 0 0
+              0 0 0 0 0 0
           </quadratic_damping>
 
           <!--

@@ -8,50 +8,6 @@
           aware that Gazebo does not use the SNAME convention per default.
     -->
 
-    <!-- Correspond to PA (Port Aft) fan in urdf -->
-    <!-- <xacro:thruster_macro robot_namespace="${namespace}" thruster_id="0">
-        <origin xyz="-0.22 -0.12 ${-0.27+0.14}" rpy="${-pi} {-pi/2} 0.785" />
-    </xacro:thruster_macro> -->
-
-    <!-- Correspond to PF (Port Forward) fan in urdf -->
-    <!-- <xacro:thruster_macro robot_namespace="${namespace}" thruster_id="1">
-        <origin xyz="0.22 -0.12 ${-0.27+0.14}" rpy="${-pi} {pi/2} -0.785" />
-    </xacro:thruster_macro> -->
-
-    <!-- Correspond to SA (Starboard Aft) fan in urdf -->
-    <!-- <xacro:thruster_macro robot_namespace="${namespace}" thruster_id="2">
-        <origin xyz="-0.22 0.12 ${-0.27+0.14}" rpy="${-pi} {-pi/2} -0.785" />
-    </xacro:thruster_macro> -->
-
-    <!-- Correspond to SF (Starboard Forward) fan in urdf -->
-    <!-- <xacro:thruster_macro robot_namespace="${namespace}" thruster_id="3">
-        <origin xyz="0.22 0.12 ${-0.27+0.14}" rpy="${-pi} {pi/2} 0.785" />
-    </xacro:thruster_macro> -->
-
-<!-- Vertical fans estimated -->
-    <!-- Correspond to VP (Vertical Port) fan (not in urdf) -->
-    <!-- <xacro:thruster_macro robot_namespace="${namespace}" thruster_id="4">
-        <origin xyz="0.22 -0.10 0" rpy="0 0 0" />
-    </xacro:thruster_macro> -->
-
-        <!-- Correspond to SF (Vertical Starboard) fan (not in urdf) -->
-    <!-- <xacro:thruster_macro robot_namespace="${namespace}" thruster_id="5">
-        <origin xyz="0.22 0.10 0 " rpy="0 0 0" />
-    </xacro:thruster_macro> -->
-
-    <!-- Instantiate fins, if necessary -->
-    <!-- <xacro:fin_macro namespace="${namespace}" fin_id="0">
-      <origin xyz="0 0 0" rpy="0 0 0" />
-    </xacro:fin_macro>
-    <xacro:fin_macro namespace="${namespace}" fin_id="1">
-      <origin xyz="0 0 0" rpy="0 0 0" />
-    </xacro:fin_macro>
-    <xacro:fin_macro namespace="${namespace}" fin_id="2">
-      <origin xyz="0 0 0" rpy="0 0 0" />
-    </xacro:fin_macro>
-    <xacro:fin_macro namespace="${namespace}" fin_id="3">
-      <origin xyz="0 0 0" rpy="0 0 0" />
-    </xacro:fin_macro> -->
 
   <xacro:property name="prop_mesh_file" value="file://$(find seabotix_alpha_description)/meshes/prop_scaled.dae"/>
 
@@ -67,6 +23,52 @@
       <xacro:insert_block name="origin"/>
     </xacro:thruster_module_first_order_basic_fcn_macro>
   </xacro:macro>
+
+
+    <!-- Correspond to PA (Port Aft) fan in urdf -->
+    <xacro:thruster_macro robot_namespace="${namespace}" thruster_id="0">
+        <origin xyz="-0.22 -0.12 ${-0.27+0.14}" rpy="${-pi} {-pi/2} 0.785" />
+    </xacro:thruster_macro>
+
+    <!-- Correspond to PF (Port Forward) fan in urdf -->
+    <xacro:thruster_macro robot_namespace="${namespace}" thruster_id="1">
+        <origin xyz="0.22 -0.12 ${-0.27+0.14}" rpy="${-pi} {pi/2} -0.785" />
+    </xacro:thruster_macro>
+
+    <!-- Correspond to SA (Starboard Aft) fan in urdf -->
+    <xacro:thruster_macro robot_namespace="${namespace}" thruster_id="2">
+        <origin xyz="-0.22 0.12 ${-0.27+0.14}" rpy="${-pi} {-pi/2} -0.785" />
+    </xacro:thruster_macro>
+
+    <!-- Correspond to SF (Starboard Forward) fan in urdf -->
+    <xacro:thruster_macro robot_namespace="${namespace}" thruster_id="3">
+        <origin xyz="0.22 0.12 ${-0.27+0.14}" rpy="${-pi} {pi/2} 0.785" />
+    </xacro:thruster_macro>
+
+<!-- Vertical fans estimated -->
+    <!-- Correspond to VP (Vertical Port) fan (not in urdf) -->
+    <xacro:thruster_macro robot_namespace="${namespace}" thruster_id="4">
+        <origin xyz="0.22 -0.10 0" rpy="0 0 0" />
+    </xacro:thruster_macro>
+
+        <!-- Correspond to SF (Vertical Starboard) fan (not in urdf) -->
+    <xacro:thruster_macro robot_namespace="${namespace}" thruster_id="5">
+        <origin xyz="0.22 0.10 0 " rpy="0 0 0" />
+    </xacro:thruster_macro>
+
+    <!-- Instantiate fins, if necessary -->
+    <!-- <xacro:fin_macro namespace="${namespace}" fin_id="0">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:fin_macro>
+    <xacro:fin_macro namespace="${namespace}" fin_id="1">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:fin_macro>
+    <xacro:fin_macro namespace="${namespace}" fin_id="2">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:fin_macro>
+    <xacro:fin_macro namespace="${namespace}" fin_id="3">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:fin_macro> -->
 
   <!-- Rexrov thrusters - change these later -->
   <!-- <xacro:thruster_macro namespace="${namespace}" thruster_id="0">
@@ -93,48 +95,5 @@
   <xacro:thruster_macro namespace="${namespace}" thruster_id="7">
     <origin xyz="0.412125 -0.505415 0.129" rpy="${0*d2r} ${0*d2r} ${-135*d2r}"/>
   </xacro:thruster_macro> -->
-
-
-    <!-- Correspond to PA (Port Aft) fan in urdf -->
-    <xacro:thruster_macro namespace="${namespace}" thruster_id="0">
-        <origin xyz="-0.22 -0.12 ${-0.27+0.14}" rpy="${-pi} ${-pi/2} 0.785" />
-    </xacro:thruster_macro>
-
-    <!-- Correspond to PF (Port Forward) fan in urdf -->
-    <xacro:thruster_macro namespace="${namespace}" thruster_id="1">
-        <origin xyz="0.22 -0.12 ${-0.27+0.14}" rpy="${-pi} ${pi/2} -0.785" />
-    </xacro:thruster_macro>
-
-    <!-- Correspond to SA (Starboard Aft) fan in urdf -->
-    <xacro:thruster_macro namespace="${namespace}" thruster_id="2">
-        <origin xyz="-0.22 0.12 ${-0.27+0.14}" rpy="${-pi} ${-pi/2} -0.785" />
-    </xacro:thruster_macro>
-
-    <!-- Correspond to SF (Starboard Forward) fan in urdf -->
-    <xacro:thruster_macro namespace="${namespace}" thruster_id="3">
-        <origin xyz="0.22 0.12 ${-0.27+0.14}" rpy="${-pi} ${pi/2} 0.785" />
-    </xacro:thruster_macro>
-
-<!-- Vertical fans estimated -->
-    <!-- Correspond to VP (Vertical Port) fan (not in urdf) -->
-    <xacro:thruster_macro namespace="${namespace}" thruster_id="4">
-        <origin xyz="0.22 -0.10 0" rpy="0 0 0" />
-    </xacro:thruster_macro>
-
-        <!-- Correspond to SF (Vertical Starboard) fan (not in urdf) -->
-    <xacro:thruster_macro namespace="${namespace}" thruster_id="5">
-        <origin xyz="0.22 0.10 0 " rpy="0 0 0" />
-    </xacro:thruster_macro>
-
-
-        <!-- Dummy thruster to match number of thrusters in rexrov -->
-    <xacro:thruster_macro namespace="${namespace}" thruster_id="6">
-        <origin xyz="0.0 0.0 0.0 " rpy="0 0 0" />
-    </xacro:thruster_macro>
-
-        <!-- Dummy thruster to match number of thrusters in rexrov -->
-    <xacro:thruster_macro namespace="${namespace}" thruster_id="7">
-        <origin xyz="0.0 0.0 0.0 " rpy="0 0 0" />
-    </xacro:thruster_macro>
 
 </robot>

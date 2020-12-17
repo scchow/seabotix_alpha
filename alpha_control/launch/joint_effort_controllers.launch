@@ -1,0 +1,44 @@
+<launch>
+  <arg name="uuv_name" />
+  <arg name="arm_name" default="alpha"/>
+
+  <rosparam subst_value="true">
+    $(arg uuv_name):
+      $(arg arm_name):
+        joint1:
+          controller:
+            type: effort_controllers/JointEffortController
+            joint: $(arg arm_name)/joint1
+            pid: {p: 2000, i: 100, d: 50}
+        joint2:
+          controller:
+            type: effort_controllers/JointEffortController
+            joint: $(arg arm_name)/joint2
+            pid: {p: 2000, i: 100, d: 50}
+        joint3:
+          controller:
+            type: effort_controllers/JointEffortController
+            joint: $(arg arm_name)/joint3
+            pid: {p: 2000, i: 100, d: 50}
+        joint4:
+          controller:
+            type: effort_controllers/JointEffortController
+            joint: $(arg arm_name)/joint4
+            pid: {p: 1000, i: 50, d: 10}
+  </rosparam>
+
+  <group ns="$(arg uuv_name)">
+    <!-- load the controllers -->
+    <node name="controller_spawner_$(arg arm_name)"
+          pkg="controller_manager"
+          type="spawner"
+          respawn="false"
+          output="screen"
+          ns="/$(arg uuv_name)"
+          args="/$(arg uuv_name)/$(arg arm_name)/joint1/controller
+                /$(arg uuv_name)/$(arg arm_name)/joint2/controller
+                /$(arg uuv_name)/$(arg arm_name)/joint3/controller
+                /$(arg uuv_name)/$(arg arm_name)/joint4/controller"/>
+
+  </group>
+</launch>

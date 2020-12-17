@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find seabotix_alpha_description)/urdf/alpha_arm_ft_sensor.xacro" />
+  <xacro:macro name="alpha_gazebo_macro" params="namespace">
+    <gazebo reference="${namespace}/base">
+      <selfCollide>false</selfCollide>
+      <maxContacts>1</maxContacts>
+    </gazebo>
+
+    <gazebo reference="${namespace}/base_link">
+      <selfCollide>false</selfCollide>
+      <maxContacts>1</maxContacts>
+    </gazebo>
+
+    <gazebo reference="${namespace}/shoulder_link">
+      <selfCollide>false</selfCollide>
+      <maxContacts>1</maxContacts>
+    </gazebo>
+
+    <gazebo reference="${namespace}/upper_arm_link">
+      <selfCollide>false</selfCollide>
+      <maxContacts>1</maxContacts>
+    </gazebo>
+
+    <gazebo reference="${namespace}/forearm_link">
+      <selfCollide>false</selfCollide>
+      <maxContacts>1</maxContacts>
+    </gazebo>
+
+    <gazebo reference="${namespace}/wrist_link">
+      <selfCollide>false</selfCollide>
+      <maxContacts>1</maxContacts>
+    </gazebo>
+
+    <gazebo reference="${namespace}/jaw1">
+      <selfCollide>false</selfCollide>
+      <kp>1000000.0</kp>
+      <kd>1.0</kd>
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <minDepth>0.001</minDepth>
+      <maxContacts>1</maxContacts>
+      <implicitSpringDamper>1</implicitSpringDamper>
+    </gazebo>
+
+    <gazebo reference="${namespace}/jaw2">
+      <selfCollide>false</selfCollide>
+      <kp>1000000.0</kp>
+      <kd>1.0</kd>
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <minDepth>0.001</minDepth>
+      <maxContacts>1</maxContacts>
+      <implicitSpringDamper>1</implicitSpringDamper>
+    </gazebo>
+
+
+    <!-- Gripper FT sensors -->
+    <xacro:joint_ft_sensor joint_name="joint5" namespace="${namespace}"/>
+    <xacro:joint_ft_sensor joint_name="joint6" namespace="${namespace}"/>
+
+    <!-- Arm FT sensors -->
+    <xacro:joint_ft_sensor joint_name="joint1" namespace="${namespace}"/>
+    <xacro:joint_ft_sensor joint_name="joint2" namespace="${namespace}"/>
+    <xacro:joint_ft_sensor joint_name="joint3" namespace="${namespace}"/>
+    <xacro:joint_ft_sensor joint_name="joint4" namespace="${namespace}"/>
+
+
+  </xacro:macro>
+
+  <!--
+  Parameters for the uuv_underwater_object_plugin that includes the implementation
+  of Fossen's equations of motion for underwater vehicles. This parameters will
+  be loaded by the vehicle where it is installed.
+  -->
+  <xacro:macro name="alpha_hydro_model" params="namespace">
+    <link name="${namespace}/base_link">
+      <volume>${pi*(0.020**2)*0.150}</volume>
+      <!-- <box>
+        <width>${base_width}</width>
+        <length>${base_length}</length>
+        <height>${base_height}</height>
+      </box> -->
+      <hydrodynamic_model>
+        <type>cylinder</type>
+        <axis>i</axis>
+      </hydrodynamic_model>
+    </link>
+
+    <link name="${namespace}/shoulder_link">
+      <volume>${pi*(0.020**2)*0.066}</volume>
+      <!-- <box>
+        <width>${shoulder_link_width}</width>
+        <length>${shoulder_link_length}</length>
+        <height>${shoulder_link_height}</height>
+      </box> -->
+      <hydrodynamic_model>
+        <type>cylinder</type>
+        <axis>i</axis>
+      </hydrodynamic_model>
+    </link>
+
+    <link name="${namespace}/upper_arm_link">
+      <volume>${pi*(0.020**2)*0.1445}</volume>
+      <!-- <box>
+        <width>${upper_arm_width}</width>
+        <length>${upper_arm_length}</length>
+        <height>${upper_arm_height}</height>
+      </box> -->
+      <hydrodynamic_model>
+        <type>cylinder</type>
+        <axis>i</axis>
+      </hydrodynamic_model>
+    </link>
+
+    <link name="${namespace}/forearm_link">
+      <volume>${pi*(0.020**2)*0.040}</volume>
+      <!-- <box>
+        <width>${elbow_link_width}</width>
+        <length>${elbow_link_length}</length>
+        <height>${elbow_link_height}</height>
+      </box> -->
+      <hydrodynamic_model>
+        <type>cylinder</type>
+        <axis>i</axis>
+      </hydrodynamic_model>
+    </link>
+
+    <link name="${namespace}/wrist_link">
+      <volume>${pi*(0.020**2)*0.140}</volume>
+      <!-- <box>
+        <width>${wrist_width}</width>
+        <length>${wrist_length}</length>
+        <height>${wrist_height}</height>
+      </box> -->
+      <hydrodynamic_model>
+        <type>cylinder</type>
+        <axis>i</axis>
+      </hydrodynamic_model>
+    </link>
+
+
+
+  </xacro:macro>
+</robot>
