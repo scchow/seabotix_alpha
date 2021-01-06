@@ -39,14 +39,24 @@
   <!-- Mass, see p.28 in Berg2012 -->
   <xacro:property name="mass" value="1862.87"/>
 
-  <xacro:macro name="rexrov_base" params="namespace *gazebo inertial_reference_frame">
+  <!-- <xacro:property name="mass" value="18.1"/> -->
+
+  <xacro:property name="length" value="0.625"/>
+  <xacro:property name="width" value="0.390"/>
+  <xacro:property name="height" value="0.390"/>
+
+
+  <xacro:macro name="seabotix_base" params="namespace *gazebo inertial_reference_frame">
     <!-- base_link according to ROS conventions: x forward, z up -->
     <link name="${namespace}/base_link">
       <inertial>
         <mass value="${mass}"/>
         <origin xyz="0 0 0"/>
         <inertia ixx="525.39" ixy="1.44" ixz="33.41" iyy="794.20" iyz="2.6" izz="691.23"/>
-      </inertial>
+        <!-- <inertia ixx="${(1/3)*((length**2)+(height**2))*mass}" ixy="0.0" ixz="0.0" 
+                 iyy="${(1/3)*((width**2)+(height**2))*mass}" iyz="0.0" 
+                 izz="${(1/3)*((length**2)+(width**2))*mass}"/> -->
+      </inertial> 
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
@@ -87,8 +97,8 @@
       </plugin>
     </gazebo> -->
 
-    <xacro:include filename="$(find uuv_descriptions)/urdf/rexrov_actuators.xacro"/>
-    <xacro:include filename="$(find uuv_descriptions)/urdf/rexrov_sensors.xacro"/>
+    <xacro:include filename="$(find seabotix_alpha_description)/urdf/seabotix_actuators.xacro"/>
+    <xacro:include filename="$(find seabotix_alpha_description)/urdf/seabotix_sensors.xacro"/>
 
   </xacro:macro>
 </robot>

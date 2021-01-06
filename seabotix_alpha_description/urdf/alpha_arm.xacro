@@ -222,7 +222,6 @@
             </inertial>-->
         </link>
 
-
         <joint name="${namespace}/joint1" type="revolute">
             <parent link="${namespace}/base_link"/>
             <child link="${namespace}/shoulder_link"/>

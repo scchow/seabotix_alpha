@@ -17,7 +17,7 @@
     </include>
 
     <!-- Spawn rexrov with oberon7 manipulator -->
-    <include file="$(find seabotix_alpha_description)/launch/upload_rexrov_oberon7.launch">
+    <include file="$(find seabotix_alpha_description)/launch/upload_seabotix_alpha.launch">
         <arg name="namespace" value="$(arg namespace)"/>
         <arg name="x" value="20.5"/>
         <arg name="y" value="-10"/>
