@@ -15,10 +15,10 @@
      limitations under the License.
 -->
 
-<robot name="rexrov" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+<robot name="seabotix" xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
   <xacro:arg name="debug" default="0"/>
-  <xacro:arg name="namespace" default="rexrov"/>
+  <xacro:arg name="namespace" default="seabotix"/>
   <xacro:arg name="inertial_reference_frame" default="world"/>
   <!-- Include the ROV macro file -->
   <xacro:include filename="$(find seabotix_alpha_description)/urdf/seabotix_base.xacro"/>

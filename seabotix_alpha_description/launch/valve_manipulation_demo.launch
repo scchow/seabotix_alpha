@@ -2,8 +2,8 @@
 <launch>
     <arg name="gui" default="true"/>
     <arg name="paused" default="false"/>
-    <arg name="world_name" default="$(find uuv_dave)/worlds/valve_manipulation_demo.world"/>
-    <arg name="namespace" default="rexrov"/>
+    <arg name="world_name" default="$(find seabotix_alpha_description)/worlds/valve_manipulation_demo.world"/>
+    <arg name="namespace" default="seabotix"/>
  
     <!-- use Gazebo's empty_world.launch with uuv_dave_ocean_waves.world -->
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -16,7 +16,7 @@
         <arg name="verbose" value="true"/>
     </include>
 
-    <!-- Spawn rexrov with oberon7 manipulator -->
+    <!-- Spawn seabotix with alpha manipulator -->
     <include file="$(find seabotix_alpha_description)/launch/upload_seabotix_alpha.launch">
         <arg name="namespace" value="$(arg namespace)"/>
         <arg name="x" value="20.5"/>
@@ -36,7 +36,7 @@
     <!-- Velocity teleop (UUV stays in position when joystick is not used) -->
     <include file="$(find uuv_control_cascaded_pid)/launch/joy_velocity.launch">
         <arg name="uuv_name" value="$(arg namespace)" />
-        <arg name="model_name" value="rexrov" />
+        <arg name="model_name" value="seabotix" />
     </include>  
 
 
@@ -90,6 +90,6 @@
           type="rqt_image_view" args="/rexrov/rexrov/camera/camera_image">
     </node> -->
     <!-- RViz -->
-    <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find uuv_gazebo)/rviz/rexrov_default.rviz"/>
+    <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find seabotix_alpha_description)/rviz/seabotix_default.rviz"/>
 
 </launch>

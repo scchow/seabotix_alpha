@@ -10,7 +10,7 @@
   <arg name="pitch" default="0.0"/>
   <arg name="yaw" default="0.0"/>
 
-  <arg name="namespace" default="rexrov"/>
+  <arg name="namespace" default="seabotix"/>
   <arg name="use_ned_frame" default="false"/>
 
   <group ns="$(arg namespace)">
