@@ -90,6 +90,6 @@
           type="rqt_image_view" args="/rexrov/rexrov/camera/camera_image">
     </node> -->
     <!-- RViz -->
-    <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find seabotix_alpha_description)/rviz/seabotix_default.rviz"/>
+    <!-- <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find seabotix_alpha_description)/rviz/seabotix_default.rviz"/> -->
 
 </launch>
