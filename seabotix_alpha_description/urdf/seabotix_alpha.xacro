@@ -30,15 +30,15 @@
       suffix="down"
       parent_link="${namespace}/base_link"
       topic="forward_sonar"
-      mass="0.015"
+      mass="0.0001"
       update_rate="40"
       samples="100"
         fov="1.54719755"
         width="768"
         height="492">
-      <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001" />
+      <inertia ixx="0.000000007" ixy="0.0" ixz="0.0" iyy="0.000000007" iyz="0.0" izz="0.000000007" />
       <!--origin xyz="0.83 0 -0.22" rpy="0 ${0.2*pi} 0" /-->
-      <origin xyz="1.15 0 0.4" rpy="0 0.3 0"/>
+      <origin xyz="0 0 0" rpy="0 0.0 0"/>
       <visual>
       </visual>
     </xacro:uuv_forward_looking_sonar>

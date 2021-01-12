@@ -38,7 +38,7 @@
   <!-- Mass, see p.28 in Berg2012 -->
   <!-- <xacro:property name="mass" value="1862.87"/> -->
   <!-- <xacro:property name="mass" value="180.1"/> -->
-  <xacro:property name="mass" value="18.1"/>
+  <xacro:property name="mass" value="40.0"/>
 
   <xacro:property name="length" value="0.625"/>
   <xacro:property name="width" value="0.390"/>
