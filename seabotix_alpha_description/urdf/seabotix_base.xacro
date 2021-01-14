@@ -41,10 +41,10 @@
   <xacro:property name="mass" value="40.0"/>
   <xacro:property name="mass_ratio" value="${40.0/1862.87}"/>
 
-
+<!-- Vehicle ~ 0.6096 m (2ft) x 0.4445 (17.5in) x 0.4572 (18in)-->
   <xacro:property name="length" value="0.625"/>
-  <xacro:property name="width" value="0.390"/>
-  <xacro:property name="height" value="0.390"/>
+  <xacro:property name="width" value="0.4572"/> 
+  <xacro:property name="height" value="0.4572"/>
 
 
   <xacro:macro name="seabotix_base" params="namespace *gazebo inertial_reference_frame">
@@ -64,27 +64,35 @@
           <mesh filename="${visual_mesh_file}" scale="1 1 1"/>
         </geometry>
       </visual>
-      <!-- bottom plate -->
+
       <collision>
-        <origin xyz="0 0 -0.75" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <box size="2.56 1.50 0.10"/>
+          <box size="${length} ${width} ${height}"/>
         </geometry>
       </collision>
+
+      <!-- bottom plate -->
+      <!-- <collision>
+        <origin xyz="0 0 ${-height/2.0}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${length} ${width+0.10} 0.10"/>
+        </geometry>
+      </collision> -->
       <!-- top plate -->
-      <collision>
-        <origin xyz="0 0 0.60" rpy="0 0 0"/>
-        <geometry><box size="2.56 1.50 0.40"/></geometry>
-      </collision>
+      <!-- <collision>
+        <origin xyz="0 0 ${height/2.0}" rpy="0 0 0"/>
+        <geometry><box size="${length} ${width+0.10} 0.10"/></geometry>
+      </collision> -->
       <!-- left / right sides -->
-      <collision>
-        <origin xyz="-0.20 0.70 -0.15" rpy="0 0 0"/>
-        <geometry><box size="2.20 0.10 1.10"/></geometry>
+      <!-- <collision>
+        <origin xyz="0 ${-width/2.0} 0" rpy="0 0 0"/>
+        <geometry><box size="${length} 0.10 ${height}"/></geometry>
       </collision>
       <collision>
-        <origin xyz="-0.20 -0.70 -0.15" rpy="0 0 0"/>
-        <geometry><box size="2.20 0.10 1.10"/></geometry>
-      </collision>
+        <origin xyz="0 ${width/2.0} 0" rpy="0 0 0"/>
+        <geometry><box size="${length} 0.10 ${height}"/></geometry>
+      </collision> -->
 
     </link>
 
