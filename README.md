@@ -16,6 +16,6 @@ And copy the `seabotix` folder (not the contents of the `seabotix` folder) in `s
 Assuming you have cloned the repository into the src folder of the same catkin workspace as the rest of the uuv_simulator packages,
 running the following commands while in the `seabotix_alpha` directory should work:
 ```
-cp seabotix_alpha_description/config_files/uuv_control_cascaded_pids_config/seabotix ../../uuv_simulator/uuv_control/uuv_control_cascaded_pids/config/seabotix
-cp seabotix_alpha_description/config_files/uuv_thruster_manager_config/seabotix ../../uuv_simulator/uuv_control/uuv_thruster_manager/config/seabotix
+cp -r seabotix_alpha_description/config_files/uuv_control_cascaded_pids_config/seabotix ../uuv_simulator/uuv_control/uuv_control_cascaded_pids/config/seabotix
+cp -r seabotix_alpha_description/config_files/uuv_thruster_manager_config/seabotix ../uuv_simulator/uuv_control/uuv_thruster_manager/config/seabotix
 ```
