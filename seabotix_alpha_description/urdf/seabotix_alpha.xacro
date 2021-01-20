@@ -23,7 +23,7 @@
   <!-- Include the ROV macro file -->
   <xacro:include filename="$(find seabotix_alpha_description)/urdf/seabotix_base.xacro"/>
   <xacro:include filename="$(find seabotix_alpha_description)/urdf/seabotix.gazebo.xacro"/>
-  <xacro:include filename="$(find seabotix_alpha_description)/urdf/alpha_default.xacro" />
+  <xacro:include filename="$(find alpha_description)/urdf/alpha_default.xacro" />
 
   <xacro:uuv_forward_looking_sonar
       namespace="${namespace}"
@@ -89,7 +89,7 @@
   </xacro:oberon7> -->
 
   <xacro:alpha namespace="alpha" parent="$(arg namespace)/base_link">
-    <origin xyz="0.3 0 0.1" rpy="0 0 0"/>
+    <origin xyz="0.0 0 -${height/2}" rpy="0 ${pi/2} 0"/>
   </xacro:alpha>
 
   <gazebo>

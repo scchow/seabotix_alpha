@@ -41,25 +41,25 @@
 
         <link name="${namespace}/base_link">
             <visual>
-            <geometry>
-            <mesh filename="package://reach_system_one_support/meshes/reach5mini/visual/Base.stl" />
-            </geometry>
-            <origin rpy="0 0 0" xyz="0 0 0"/>
-            <material name="black_arm"/>
+                <geometry>
+                    <mesh filename="package://reach_system_one_support/meshes/reach5mini/visual/Base.stl" />
+                </geometry>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <material name="black_arm"/>
             </visual>
             <collision>
-            <geometry>
-                <cylinder length="0.150" radius="0.020"/>
-            </geometry>
-            <origin rpy="0 1.57075 0" xyz="-0.075 0 0"/>
+                <geometry>
+                    <cylinder length="0.150" radius="0.020"/>
+                </geometry>
+                <origin rpy="0 1.57075 0" xyz="-0.075 0 0"/>
             </collision>
             <inertial>
-            <mass value="0.341"/>
-            <origin xyz="-0.075 -0.006 -0.003"/>
-            <inertia ixx="0.000099" ixy="0.000139" ixz="0.000115" iyy="0.002920" iyz="0.000003" izz="0.002934"/>
-            <!-- <inertia ixx="${(1/12)*0.341*(0.150)**2 + 0.25*0.341*0.020**2}" ixy="0.0" ixz="0.0" 
-            iyy="${(1/12)*0.341*(0.150)**2 + 0.25*0.341*0.020**2}" iyz="0.0" 
-            izz="${0.5*0.341*0.020**2}"/> -->
+                <mass value="0.341"/>
+                <origin xyz="-0.075 -0.006 -0.003"/>
+                <inertia ixx="0.000099" ixy="0.000139" ixz="0.000115" iyy="0.002920" iyz="0.000003" izz="0.002934"/>
+                <!-- <inertia ixx="${(1/12)*0.341*(0.150)**2 + 0.25*0.341*0.020**2}" ixy="0.0" ixz="0.0" 
+                iyy="${(1/12)*0.341*(0.150)**2 + 0.25*0.341*0.020**2}" iyz="0.0" 
+                izz="${0.5*0.341*0.020**2}"/> -->
             </inertial>
         </link>
         

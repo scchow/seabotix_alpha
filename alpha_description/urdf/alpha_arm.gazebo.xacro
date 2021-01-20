@@ -2,7 +2,7 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:include filename="$(find seabotix_alpha_description)/urdf/alpha_arm_ft_sensor.xacro" />
+  <xacro:include filename="$(find alpha_description)/urdf/alpha_arm_ft_sensor.xacro" />
   <xacro:macro name="alpha_gazebo_macro" params="namespace">
 
     <gazebo reference="${namespace}/base_link">

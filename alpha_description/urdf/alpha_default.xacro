@@ -17,9 +17,9 @@
 <robot name="alpha" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- Import serial arm -->
-  <xacro:include filename="$(find seabotix_alpha_description)/urdf/alpha_arm.xacro" />
+  <xacro:include filename="$(find alpha_description)/urdf/alpha_arm.xacro" />
   <!-- Import Gazebo specific macros -->
-  <xacro:include filename="$(find seabotix_alpha_description)/urdf/alpha_arm.gazebo.xacro" />
+  <xacro:include filename="$(find alpha_description)/urdf/alpha_arm.gazebo.xacro" />
 
   <xacro:macro name="alpha" params="namespace parent *origin">
     <xacro:alpha_arm namespace="${namespace}"/>
