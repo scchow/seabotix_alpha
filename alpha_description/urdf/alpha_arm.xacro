@@ -42,7 +42,7 @@
         <link name="${namespace}/base_link">
             <visual>
                 <geometry>
-                    <mesh filename="package://reach_system_one_support/meshes/reach5mini/visual/Base.stl" />
+                    <mesh filename="package://alpha_description/meshes/reach5mini/visual/Base.stl" />
                 </geometry>
                 <origin rpy="0 0 0" xyz="0 0 0"/>
                 <material name="black_arm"/>
@@ -66,7 +66,7 @@
         <link name="${namespace}/shoulder_link">
             <visual>
             <geometry>
-                <mesh filename="package://reach_system_one_support/meshes/reach5mini/visual/ShoulderJoint.stl" />
+                <mesh filename="package://alpha_description/meshes/reach5mini/visual/ShoulderJoint.stl" />
             </geometry>
             <material name="black_arm"/>
             <origin rpy="0 0 -1.57075" xyz="0 0 0"/>
@@ -90,7 +90,7 @@
         <link name="${namespace}/upper_arm_link">
             <visual>
             <geometry>
-                <mesh filename="package://reach_system_one_support/meshes/reach5mini/visual/UpperArm.stl" />
+                <mesh filename="package://alpha_description/meshes/reach5mini/visual/UpperArm.stl" />
             </geometry>
             <origin rpy="0 -1.57075 -0.2655555" xyz="0 0 -0.075"/>
             <material name="black_arm"/>
@@ -120,7 +120,7 @@
         <link name="${namespace}/forearm_link">
             <visual>
             <geometry>
-                <mesh filename="package://reach_system_one_support/meshes/reach5mini/visual/ForearmJoint.stl" />
+                <mesh filename="package://alpha_description/meshes/reach5mini/visual/ForearmJoint.stl" />
             </geometry>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <material name="black_arm"/>
@@ -144,7 +144,7 @@
         <link name="${namespace}/wrist_link">
             <visual>
             <geometry>
-                <mesh filename="package://reach_system_one_support/meshes/reach5mini/visual/Wrist.stl" />
+                <mesh filename="package://alpha_description/meshes/reach5mini/visual/Wrist.stl" />
             </geometry>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <material name="black_arm"/>
@@ -171,19 +171,26 @@
         <link name="${namespace}/jaw1">
             <visual>
                 <geometry>
-                    <mesh filename="package://reach_system_one_support/meshes/reach5mini/visual/Jaw1.stl" />
+                    <mesh filename="package://alpha_description/meshes/reach5mini/visual/Jaw1.stl" />
                 </geometry>
                 <origin rpy="0 0 0" xyz="0 0 0"/>
                 <material name="black_arm"/>
             </visual>
             <collision>
                 <geometry>
-                    <!-- <box size="0.03 0.09 0.01"/> -->
+                    <mesh filename="package://alpha_description/meshes/reach5mini/visual/Jaw1.stl" scale="1 1 0.9"/>                        
+                </geometry>
+            </collision>
+            <!-- <collision> -->
+                <!-- <origin rpy="0 0 0" xyz="0 0 0"/> -->
+                <!-- <geometry>
+                    <mesh filename="package://alpha_description/meshes/reach5mini/visual/Jaw1.stl" scale="1 1 0.9"/>
+                </geometry>                 -->
+                <!-- <geometry>
                     <box size="0.02 0.07 0.01"/>
                 </geometry>
-                <!-- <origin rpy="0 0 0" xyz="-0.01 -0.045 0"/> -->
-                <origin rpy="0 0 0" xyz="-0.02 -0.045 0"/>
-            </collision>
+                <origin rpy="0 0 0" xyz="-0.04 -0.045 0"/> -->
+            <!-- </collision> -->
             <!-- Made up inertias from wrist -->
             <inertial>
                 <mass value="0.333"/>
@@ -197,20 +204,29 @@
 
         <link name="${namespace}/jaw2">
             <visual>
-            <geometry>
-                <mesh filename="package://reach_system_one_support/meshes/reach5mini/visual/Jaw2.stl" />
-            </geometry>
-            <origin rpy="0 0 0" xyz="0 0 0"/>
-            <material name="black_arm"/>      
+                <geometry>
+                    <mesh filename="package://alpha_description/meshes/reach5mini/visual/Jaw2.stl" />
+                </geometry>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <material name="black_arm"/>      
             </visual>
             <collision>
                 <geometry>
-                    <!-- <box size="0.03 0.09 0.01"/> -->
+                    <mesh filename="package://alpha_description/meshes/reach5mini/visual/Jaw2.stl" scale="1 1 0.9"/>
+                </geometry>
+            </collision>
+            <!-- <collision> -->
+                <!-- <geometry>
+                    <mesh filename="package://alpha_description/meshes/reach5mini/visual/Jaw2.stl" scale="1 1 0.9"/>
+                </geometry> -->
+
+                <!-- <origin rpy="0 0 0" xyz="0 0 0"/>
+                <geometry>
                     <box size="0.02 0.07 0.01"/>
                 </geometry>
-                <!-- <origin rpy="0 0 0" xyz="0.01 -0.045 0"/> -->
-                <origin rpy="0 0 0" xyz="0.02 -0.045 0"/>
-            </collision>
+                <origin rpy="0 0 0" xyz="0.01 -0.045 0"/>
+                <origin rpy="0 0 0" xyz="0.04 -0.045 0"/> -->
+            <!-- </collision> -->
             <!-- Made up inertias from wrist -->
             <inertial>
             <mass value="0.333"/>
@@ -227,7 +243,7 @@
             <child link="${namespace}/shoulder_link"/>
             <origin xyz="0 0 0" rpy="0 0 0"/> <!--Was <origin xyz="0 0 0" rpy="0 0 3.141592/> before-->
             <axis xyz="0 0 1"/>
-            <limit effort="9.0" lower="0.0" upper = "6.2" velocity="0.5"/>
+            <limit effort="9.0" lower="-${pi}" upper = "${pi}" velocity="0.5"/>
             <dynamics damping="0.1" friction="0.1"/>
         </joint>
         <xacro:simple_transmission joint="${namespace}/joint1" />
@@ -257,7 +273,7 @@
             <child link="${namespace}/wrist_link"/>
             <origin xyz="0.020 0 0" rpy="-1.57075 0 0"/>
             <axis xyz="0 0 1"/>
-            <limit effort="5.0" lower="0.0" upper = "6.0" velocity="1.0"/>
+            <limit effort="5.0" lower="${-pi}" upper = "${pi}" velocity="1.0"/>
             <dynamics damping="0.1" friction="0.1"/>
         </joint>
         <xacro:simple_transmission joint="${namespace}/joint4" />
