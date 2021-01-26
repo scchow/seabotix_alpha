@@ -14,12 +14,12 @@
           controller:
             type: effort_controllers/JointEffortController
             joint: $(arg arm_name)/joint5
-            pid: {p: 50.0, i: 0, d: 0}
+            pid: {p: 0.00, i: 0, d: 0}
         joint6:
           controller:
             type: effort_controllers/JointEffortController
             joint: $(arg arm_name)/joint6
-            pid: {p: 50.0, i: 0, d: 0}
+            pid: {p: 0.00, i: 0, d: 0}
   </rosparam>
 
   <group ns="$(arg uuv_name)">
@@ -46,9 +46,9 @@
               deadman_button: $(arg deadman_button)
               open_button: $(arg open_button)
               close_button: $(arg close_button)
-              kp: 100
-              ki: 4
-              kd: 1
+              kp: 1.0
+              ki: 0
+              kd: 0
             </rosparam>
       </node>
   </group>

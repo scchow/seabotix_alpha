@@ -7,15 +7,19 @@
   <arg name="exclusion_button" default="4"/>
 
   <!-- Default joystick mapping (XBox 360 controller) -->
-  <arg name="axis_joint1" default="3"/>
-  <arg name="axis_joint2" default="4"/>
-  <arg name="axis_joint3" default="1"/>
-  <arg name="axis_joint4" default="6"/>
-  <arg name="axis_extra0" default="7"/>
-  <arg name="axis_extra1" default="0"/>
-  <arg name="gripper_open_button" default="1"/>
-  <arg name="gripper_close_button" default="2"/>
-  <arg name="home_button" default="7"/>
+  <arg name="axis_joint1" default="3"/> <!-- Right Stick Left/Right-->
+  <arg name="axis_joint2" default="4"/> <!-- Right Stick Up/Down -->
+  <arg name="axis_joint3" default="1"/> <!-- Left Stick Up/Down-->
+  <arg name="axis_joint4" default="0"/> <!-- Turn Wrist: Left Stick Left/Right -->
+  <arg name="axis_extra0" default="2"/> <!-- Left Trigger -->
+  <arg name="axis_extra1" default="5"/> <!-- Right Trigger-->
+  <arg name="gripper_open_button" default="1"/> <!-- B -->
+  <arg name="gripper_close_button" default="2"/> <!-- X -->
+  <arg name="home_button" default="7"/> <!-- Home -->
+
+  <arg name="joint_p" default="0.0"/>
+  <arg name="joint_i" default="0.0"/>
+  <arg name="joint_d" default="0.0"/>
 
   <!-- Initialize effort controllers -->
   <include file="$(find alpha_control)/launch/joint_effort_controllers.launch">
@@ -52,33 +56,33 @@
             axis_gain: 0.01
             topic: /$(arg uuv_name)/$(arg arm_name)/joint1/controller/command
             controller:
-              p: 1000
-              i: 20
-              d: 50
+              p: 50.0
+              i: 0
+              d: 5.0
           joint2:
             joint_input_axis: $(arg axis_joint2)
             axis_gain: 0.01
             topic: /$(arg uuv_name)/$(arg arm_name)/joint2/controller/command
             controller:
-              p: 1000
-              i: 20
-              d: 50
+              p: 25.0
+              i: 0
+              d: 5.0
           joint3:
             joint_input_axis: $(arg axis_joint3)
             axis_gain: 0.01
             topic: /$(arg uuv_name)/$(arg arm_name)/joint3/controller/command
             controller:
-              p: 1000
-              i: 20
-              d: 50
+              p: 17.0
+              i: 0
+              d: 0.5
           joint4:
             joint_input_axis: $(arg axis_joint4)
             axis_gain: 0.01
             topic: /$(arg uuv_name)/$(arg arm_name)/joint4/controller/command
             controller:
-              p: 300
-              i: 10
-              d: 20
+              p: 10.0
+              i: 0.0
+              d: 0.0
       </rosparam>
     </node>
   </group>

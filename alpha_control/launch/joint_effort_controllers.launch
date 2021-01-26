@@ -9,22 +9,22 @@
           controller:
             type: effort_controllers/JointEffortController
             joint: $(arg arm_name)/joint1
-            pid: {p: 2000, i: 100, d: 50}
+            pid: {p: 0, i: 0, d: 0}
         joint2:
           controller:
             type: effort_controllers/JointEffortController
             joint: $(arg arm_name)/joint2
-            pid: {p: 2000, i: 100, d: 50}
+            pid: {p: 0, i: 0, d: 0}
         joint3:
           controller:
             type: effort_controllers/JointEffortController
             joint: $(arg arm_name)/joint3
-            pid: {p: 2000, i: 100, d: 50}
+            pid: {p: 0, i: 0, d: 0}
         joint4:
           controller:
             type: effort_controllers/JointEffortController
             joint: $(arg arm_name)/joint4
-            pid: {p: 1000, i: 50, d: 10}
+            pid: {p: 0, i: 0, d: 0}
   </rosparam>
 
   <group ns="$(arg uuv_name)">
