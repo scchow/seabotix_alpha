@@ -27,4 +27,44 @@ joint_state_controller:
   type: joint_state_controller/JointStateController
   publish_rate: 50
 controller_list:
-  []
+  - name: Combined_controller
+    action_ns: follow_joint_trajectory
+    default: True
+    type: FollowJointTrajectory
+    joints:
+      - x_displacement
+      - y_displacement
+      - z_displacement
+      - roll_displacement
+      - pitch_displacement
+      - yaw_displacement
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+  - name: Arm_controller
+    action_ns: follow_joint_trajectory
+    default: True
+    type: FollowJointTrajectory
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+  - name: Vehicle_controller
+    action_ns: follow_joint_trajectory
+    default: True
+    type: FollowJointTrajectory
+    joints:
+      - x_displacement
+      - y_displacement
+      - z_displacement
+      - roll_displacement
+      - pitch_displacement
+      - yaw_displacement
+  - name: Gripper_controller
+    action_ns: follow_joint_trajectory
+    default: True
+    type: FollowJointTrajectory
+    joints:
+      joint5

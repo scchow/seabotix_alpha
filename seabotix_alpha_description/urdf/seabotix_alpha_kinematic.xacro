@@ -14,6 +14,11 @@ without any uuv simulator dependencies -->
   <!-- Fluid density -->
   <xacro:property name="rho" value="1028"/>
 
+<!-- Vehicle ~ 0.6096 m (2ft) x 0.4445 (17.5in) x 0.4572 (18in)-->
+  <xacro:property name="length" value="0.625"/>
+  <xacro:property name="width" value="0.4572"/> 
+  <xacro:property name="height" value="0.4572"/>
+
   <!--
     Visual mesh file for the vehicle, usually in DAE (Collada) format. Be sure to store the
     mesh with the origin of the mesh on the same position of the center of mass, otherwise
@@ -632,7 +637,7 @@ without any uuv simulator dependencies -->
     <child link="shoulder_link"/>
     <origin xyz="0 0 0" rpy="0 0 0"/> <!--Was <origin xyz="0 0 0" rpy="0 0 3.141592/> before-->
     <axis xyz="0 0 1"/>
-    <limit effort="9.0" lower="0.0" upper = "6.2" velocity="0.5"/>
+    <limit effort="9.0" lower="-${pi}" upper = "${pi}" velocity="0.5"/>
   </joint>
 
   <joint name="joint2" type="revolute">
@@ -656,7 +661,7 @@ without any uuv simulator dependencies -->
     <child link="wrist_link"/>
     <origin xyz="0.020 0 0" rpy="-1.57075 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="5.0" lower="0.0" upper = "6.0" velocity="1.0"/>
+            <limit effort="5.0" lower="${-pi}" upper = "${pi}" velocity="1.0"/>
   </joint>
 
   <joint name="joint5" type="revolute">
@@ -743,7 +748,7 @@ without any uuv simulator dependencies -->
       <!-- <parent link="${namespace}/base_link"/> -->
       <parent link="world_link_yaw"/>
       <child link="arm_base_link"/>
-      <origin rpy="0 0 0" xyz="${0.25 + 0.075 + 0.075 +0.05} 0 0"/>
+      <origin xyz="0.0 0 -${3*height/4}" rpy="0 ${pi/2} 0"/>
     </joint>
 
     <!-- <gazebo reference="${namespace}/base_link"> -->
