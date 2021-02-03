@@ -8,4 +8,4 @@ moveit_setup_assistant_config:
   CONFIG:
     author_name: Scott
     author_email: chows@oregonstate.edu
-    generated_timestamp: 1611820463
+    generated_timestamp: 1612311526

@@ -14,10 +14,15 @@
           respawn="false"
           output="screen"
           ns="/$(arg uuv_name)"
-          args="/$(arg uuv_name)/$(arg arm_name)/joint1/controller
+          args="/$(arg uuv_name)/$(arg arm_name)/arm_controller
+                "/>
+          <!-- args="/$(arg uuv_name)/$(arg arm_name)/joint1/controller
                 /$(arg uuv_name)/$(arg arm_name)/joint2/controller
                 /$(arg uuv_name)/$(arg arm_name)/joint3/controller
-                /$(arg uuv_name)/$(arg arm_name)/joint4/controller"/>
+                /$(arg uuv_name)/$(arg arm_name)/joint4/controller
+                /$(arg uuv_name)/$(arg arm_name)/arm_controller
+                "/> -->
 
   </group>
+
 </launch>

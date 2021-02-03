@@ -1,0 +1,45 @@
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50
+controller_list:
+  # - name: seabotix/whole_body_controller
+  #   action_ns: follow_joint_trajectory
+  #   type: FollowJointTrajectory
+  #   default: true
+  #   joints:
+  #     - x_displacement
+  #     - y_displacement
+  #     - z_displacement
+  #     - yaw_displacement
+  #     - seabotix/alpha/joint1
+  #     - seabotix/alpha/joint2
+  #     - seabotix/alpha/joint3
+  #     - seabotix/alpha/joint4
+  - name: seabotix/alpha/arm_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+      - seabotix/alpha/joint1
+      - seabotix/alpha/joint2
+      - seabotix/alpha/joint3
+      - seabotix/alpha/joint4
+  # - name: seabotix/vehicle_controller
+  #   action_ns: follow_joint_trajectory
+  #   type: FollowJointTrajectory
+  #   default: true
+  #   joints:
+  #     - x_displacement
+  #     - y_displacement
+  #     - z_displacement
+  #     - yaw_displacement
+  - name: seabotix/alpha/gripper_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+      - seabotix/alpha/joint5
+      - seabotix/alpha/joint6
+initial:  # Define initial robot poses.
+  - group: whole_body
+    pose: Origin

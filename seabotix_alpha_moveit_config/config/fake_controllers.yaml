@@ -1,37 +1,18 @@
 controller_list:
-  - name: fake_Combined_controller
-    type: $(arg execution_type)
-    joints:
-      - x_displacement
-      - y_displacement
-      - z_displacement
-      - roll_displacement
-      - pitch_displacement
-      - yaw_displacement
-      - joint1
-      - joint2
-      - joint3
-      - joint4
   - name: fake_Arm_controller
     type: $(arg execution_type)
     joints:
-      - joint1
-      - joint2
-      - joint3
-      - joint4
-  - name: fake_Vehicle_controller
-    type: $(arg execution_type)
-    joints:
-      - x_displacement
-      - y_displacement
-      - z_displacement
-      - roll_displacement
-      - pitch_displacement
-      - yaw_displacement
+      - seabotix/alpha/joint1
+      - seabotix/alpha/joint2
+      - seabotix/alpha/joint3
+      - seabotix/alpha/joint4
   - name: fake_Gripper_controller
     type: $(arg execution_type)
     joints:
-      - joint5
+      - seabotix/alpha/joint5
+      - seabotix/alpha/joint6
 initial:  # Define initial robot poses.
-  - group: Combined
-    pose: Origin
+#  - group: Arm
+#    pose: home
+
+  []

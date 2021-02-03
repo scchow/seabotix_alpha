@@ -10,6 +10,10 @@
   <param name="octomap_resolution" type="double" value="0.025" />
   <param name="max_range" type="double" value="5.0" />
 
+  <!-- Dunno if this parameter is needed, but following the tutorial on MoveIt! Gazebo Integration -->
+  <param name="octomap_frame" type="string" value="map" />
+
+
   <!-- Load the robot specific sensor manager; this sets the moveit_sensor_manager ROS parameter -->
   <arg name="moveit_sensor_manager" default="seabotix_alpha" />
   <include file="$(find seabotix_alpha_moveit_config)/launch/$(arg moveit_sensor_manager)_moveit_sensor_manager.launch.xml" />
