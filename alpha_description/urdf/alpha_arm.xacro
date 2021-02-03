@@ -284,7 +284,6 @@
             <parent link="${namespace}/wrist_link"/>
             <child link="${namespace}/jaw1"/>
             <origin xyz="0.015 0 -0.140" rpy="1.57075 0 0"/>
-            <!-- was <axis xyz="0 0 -1"/> in original urdf -->
             <axis xyz="0 0 1"/>
             <limit effort="5.0" lower="0.0" upper = "0.5" velocity="0.5"/>
             <dynamics damping="0.1" friction="0.1"/>

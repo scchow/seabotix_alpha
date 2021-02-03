@@ -1,0 +1,12 @@
+seabotix: #$(arg uuv_name):
+    alpha: #$(arg arm_name):
+      joint5:
+        controller:
+          type: effort_controllers/JointEffortController
+          joint: alpha/joint5
+          pid: {p: 0.00, i: 0, d: 0}
+      joint6:
+        controller:
+          type: effort_controllers/JointEffortController
+          joint: alpha/joint6
+          pid: {p: 0.00, i: 0, d: 0}
