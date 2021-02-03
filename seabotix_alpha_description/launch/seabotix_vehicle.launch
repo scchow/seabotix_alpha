@@ -26,12 +26,10 @@
     </include>
 
     <!-- Velocity teleop (UUV stays in position when joystick is not used) -->
-    <include file="$(find uuv_control_cascaded_pid)/launch/joy_velocity.launch">
+    <include file="$(find seabotix_control)/launch/joy_velocity.launch">
         <arg name="uuv_name" value="$(arg namespace)" />
         <arg name="model_name" value="seabotix" />
     </include>  
-
-
 
     <!-- use ned frame north east down -->
     <include file="$(find uuv_assistants)/launch/publish_world_ned_frame.launch"/>
