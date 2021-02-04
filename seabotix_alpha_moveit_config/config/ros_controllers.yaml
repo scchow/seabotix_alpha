@@ -13,33 +13,12 @@ hardware_interface:
     - y_displacement
     - z_displacement
     - yaw_displacement
-    - alpha/anchor
     - alpha/joint1
     - alpha/joint2
     - alpha/joint3
     - alpha/joint4
     - alpha/joint5
     - alpha/joint6
-    - seabotix/camera_joint
-    - seabotix/camera_optical_joint
-    - seabotix/dvl_joint
-    - seabotix/dvl_sonar0_joint
-    - seabotix/dvl_sonar1_joint
-    - seabotix/dvl_sonar2_joint
-    - seabotix/dvl_sonar3_joint
-    - seabotix/gps_joint
-    - seabotix/imu_joint
-    - seabotix/magnetometer_joint
-    - seabotix/pose_sensor_default_joint
-    - seabotix/pressure_joint
-    - seabotix/rpt_joint
-    - seabotix/thruster_0_joint
-    - seabotix/thruster_1_joint
-    - seabotix/thruster_2_joint
-    - seabotix/thruster_3_joint
-    - seabotix/thruster_4_joint
-    - seabotix/thruster_5_joint
-    - seabotix_forward_sonardown_joint
   sim_control_mode: 1  # 0: position, 1: velocity
 # Publish all joint states
 # Creates the /joint_states topic necessary in ROS
@@ -47,7 +26,7 @@ joint_state_controller:
   type: joint_state_controller/JointStateController
   publish_rate: 50
 controller_list:
-  - name: arm_controller
+  - name: seabotix/alpha/arm_controller
     action_ns: follow_joint_trajectory
     default: True
     type: FollowJointTrajectory
@@ -56,14 +35,14 @@ controller_list:
       - alpha/joint2
       - alpha/joint3
       - alpha/joint4
-  - name: gripper_controller
+  - name: seabotix/alpha/gripper_controller
     action_ns: follow_joint_trajectory
     default: True
     type: FollowJointTrajectory
     joints:
       - alpha/joint5
       - alpha/joint6
-  - name: vehicle_controller
+  - name: seabotix/alpha/vehicle_controller
     action_ns: follow_joint_trajectory
     default: True
     type: FollowJointTrajectory
@@ -72,16 +51,16 @@ controller_list:
       - y_displacement
       - z_displacement
       - yaw_displacement
-  - name: vehicle_arm_controller
-    action_ns: follow_joint_trajectory
-    default: True
-    type: FollowJointTrajectory
-    joints:
-      - x_displacement
-      - y_displacement
-      - z_displacement
-      - yaw_displacement
-      - alpha/joint1
-      - alpha/joint2
-      - alpha/joint3
-      - alpha/joint4
+  # - name: vehicle_arm_controller
+  #   action_ns: follow_joint_trajectory
+  #   default: True
+  #   type: FollowJointTrajectory
+  #   joints:
+  #     - x_displacement
+  #     - y_displacement
+  #     - z_displacement
+  #     - yaw_displacement
+  #     - alpha/joint1
+  #     - alpha/joint2
+  #     - alpha/joint3
+  #     - alpha/joint4

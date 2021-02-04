@@ -1,0 +1,23 @@
+<launch>
+
+  <!-- Publish the TFs needed for MoveIt! -->
+  <node name="tf_rebroadcaster" pkg="seabotix_alpha_description" type="tf_republisher.py"  output="screen" respawn="false" respawn_delay="0">
+  </node>
+  
+<!-- 
+  # The planning and execution components of MoveIt! configured to 
+  # publish the current configuration of the robot (simulated or real) 
+  # and the current state of the world as seen by the planner -->
+  <include file="$(find seabotix_alpha_moveit_config)/launch/move_group.launch">
+    <arg name="publish_monitored_planning_scene" value="true" />
+  </include>
+
+  <!-- # The visualization component of MoveIt! -->
+  <include file="$(find seabotix_alpha_moveit_config)/launch/moveit_rviz.launch"/>
+
+  <!-- <node pkg="moveit_ros_move_group" type="move_group" name="joint_state_remap" output="screen">
+    <remap from="/seabotix/joint_states" to="/joint_states"/>
+  </node> -->
+
+
+</launch>
