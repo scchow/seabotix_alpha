@@ -1,34 +1,63 @@
 seabotix: #$(arg uuv_name):
-    alpha: #$(arg arm_name):
-      joint1:
-        controller:
-          type: effort_controllers/JointEffortController
-          joint: alpha/joint1
-          pid: {p: 0, i: 0, d: 0}
-      joint2:
-        controller:
-          type: effort_controllers/JointEffortController
-          joint: alpha/joint2
-          pid: {p: 0, i: 0, d: 0}
-      joint3:
-        controller:
-          type: effort_controllers/JointEffortController
-          joint: alpha/joint3
-          pid: {p: 0, i: 0, d: 0}
-      joint4:
-        controller:
-          type: effort_controllers/JointEffortController
-          joint: alpha/joint4
-          pid: {p: 0, i: 0, d: 0}
-      arm_controller:
-        type: effort_controllers/JointTrajectoryController
-        joints:
-          - alpha/joint1
-          - alpha/joint2
-          - alpha/joint3
-          - alpha/joint4
-        gains: # Required because we're controlling an effort interface
-          alpha/joint1: {p: 50,  d: 0, i: 5.0, i_clamp: 1}
-          alpha/joint2: {p: 25,  d: 0, i: 5.0, i_clamp: 1}
-          alpha/joint3: {p: 17.0,  d: 0, i: 0.5, i_clamp: 1}
-          alpha/joint4: {p: 10,  d: 0, i: 0, i_clamp: 1} 
+  alpha: #$(arg arm_name):
+    joint1:
+      controller:
+        type: position_controllers/JointPositionController
+        joint: alpha/joint1
+        # pid: {p: 1.0, i: 0, d: 0}
+    joint2:
+      controller:
+        type: position_controllers/JointPositionController
+        joint: alpha/joint2
+        # pid: {p: 1.0, i: 0, d: 0}
+    joint3:
+      controller:
+        type: position_controllers/JointPositionController
+        joint: alpha/joint3
+        # pid: {p: 1.0, i: 0, d: 0}
+    joint4:
+      controller:
+        type: position_controllers/JointPositionController
+        joint: alpha/joint4
+        # pid: {p: 1.0, i: 0, d: 0}
+  gazebo_ros_control:   
+    pid_gains:
+      alpha:
+        joint1:
+          p: 50.0
+          i: 0.0
+          d: 5.0
+        joint2:
+          p: 0.0
+          i: 0.0
+          d: 0.0
+        joint3:
+          p: 0.0
+          i: 0.0
+          d: 0.0
+        joint4:
+          p: 0.0
+          i: 0.0
+          d: 0.0
+        joint5:
+          p: 0.0
+          i: 0.0
+          d: 0.0
+        joint6:
+          p: 0.0
+          i: 0.0
+          d: 0.0 
+          
+
+      # arm_controller:
+      #   type: effort_controllers/JointTrajectoryController
+      #   joints:
+      #     - alpha/joint1
+      #     - alpha/joint2
+      #     - alpha/joint3
+      #     - alpha/joint4
+      #   gains: # Required because we're controlling an effort interface
+      #     alpha/joint1: {p: 50,  d: 0, i: 5.0, i_clamp: 1}
+      #     alpha/joint2: {p: 25,  d: 0, i: 5.0, i_clamp: 1}
+      #     alpha/joint3: {p: 17.0,  d: 0, i: 0.5, i_clamp: 1}
+      #     alpha/joint4: {p: 10,  d: 0, i: 0, i_clamp: 1} 

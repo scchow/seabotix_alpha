@@ -2,17 +2,17 @@ seabotix: #$(arg uuv_name):
     alpha: #$(arg arm_name):
       joint5:
         controller:
-          type: effort_controllers/JointEffortController
+          type: position_controllers/JointPositionController
           joint: alpha/joint5
-          pid: {p: 0.00, i: 0, d: 0}
+          pid: {p: 1.00, i: 0, d: 0}
       joint6:
         controller:
-          type: effort_controllers/JointEffortController
+          type: position_controllers/JointPositionController
           joint: alpha/joint6
-          pid: {p: 0.00, i: 0, d: 0}
-      gripper_controller:
-        type: position_controllers/JointTrajectoryController
-        joints:
-          - alpha/joint5
-          - alpha/joint6
+          pid: {p: 1.00, i: 0, d: 0}
+      # gripper_controller:
+      #   type: position_controllers/JointTrajectoryController
+      #   joints:
+      #     - alpha/joint5
+      #     - alpha/joint6
     

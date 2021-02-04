@@ -13,7 +13,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 # File directly from uuv_manipulators_control/scripts/joint_position_controller.py
+# Implements PID controllers for joystick control and send commands directly to 
+# Joint command topics
 import os
 import rospy
 from copy import deepcopy
@@ -96,8 +99,8 @@ class JointPositionController:
         while not rospy.is_shutdown():
             pos = self._arm_interface.joint_angles
             for joint in pos:
-                u = self._controllers[joint].regulate(self._reference_pos[joint] - pos[joint], rospy.get_time())
-                self._command_topics[joint].publish(Float64(u))
+                # u = self._controllers[joint].regulate(self._reference_pos[joint] - pos[joint], rospy.get_time())
+                self._command_topics[joint].publish(Float64(self._reference_pos[joint]))
             rate.sleep()
 
     def _check_joint_limits(self, value, joint):
@@ -133,6 +136,8 @@ class JointPositionController:
                         # Check for the joint limits
                         self._reference_pos[joint] = self._check_joint_limits(self._reference_pos[joint], joint)
                 self._last_joy_update = rospy.get_time()
+                rospy.loginfo("Reference Pose: "+ str(self._reference_pos))
+                
         except Exception, e:
             print 'Error during joy parsing, message=', e
 

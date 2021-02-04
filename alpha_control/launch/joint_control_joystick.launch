@@ -21,8 +21,8 @@
   <arg name="joint_i" default="0.0"/>
   <arg name="joint_d" default="0.0"/>
 
-  <!-- Initialize effort controllers -->
-  <include file="$(find alpha_control)/launch/joint_effort_controllers.launch">
+  <!-- Initialize controllers for arm -->
+  <include file="$(find alpha_control)/launch/joint_controllers.launch">
     <arg name="uuv_name" value="$(arg uuv_name)"/>
     <arg name="arm_name" value="$(arg arm_name)"/>
   </include>
@@ -43,7 +43,7 @@
       output="screen"/>
 
     <!-- Starting direct joint position control node -->
-    <node name="joint_position_controller_$(arg arm_name)" pkg="alpha_control" type="joint_position_controller.py"
+    <node name="joint_position_controller_$(arg arm_name)" pkg="alpha_control" type="joint_position_controller_joystick.py"
       output="screen">
       <remap from="joy" to="/$(arg uuv_name)/joy"/>
       <rosparam subst_value="true">
@@ -56,31 +56,31 @@
             axis_gain: 0.01
             topic: /$(arg uuv_name)/$(arg arm_name)/joint1/controller/command
             controller:
-              p: 50.0
+              p: 1.0
               i: 0
-              d: 5.0
+              d: 0.0
           joint2:
             joint_input_axis: $(arg axis_joint2)
             axis_gain: 0.01
             topic: /$(arg uuv_name)/$(arg arm_name)/joint2/controller/command
             controller:
-              p: 25.0
+              p: 1.0
               i: 0
-              d: 5.0
+              d: 0.0
           joint3:
             joint_input_axis: $(arg axis_joint3)
             axis_gain: 0.01
             topic: /$(arg uuv_name)/$(arg arm_name)/joint3/controller/command
             controller:
-              p: 17.0
+              p: 0.0
               i: 0
-              d: 0.5
+              d: 0.0
           joint4:
             joint_input_axis: $(arg axis_joint4)
             axis_gain: 0.01
             topic: /$(arg uuv_name)/$(arg arm_name)/joint4/controller/command
             controller:
-              p: 10.0
+              p: 1.0
               i: 0.0
               d: 0.0
       </rosparam>
