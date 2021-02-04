@@ -43,7 +43,7 @@
       output="screen"/>
 
     <!-- Starting direct joint position control node -->
-    <node name="joint_position_controller_$(arg arm_name)" pkg="uuv_manipulators_control" type="joint_position_controller.py"
+    <node name="joint_position_controller_$(arg arm_name)" pkg="alpha_control" type="joint_position_controller.py"
       output="screen">
       <remap from="joy" to="/$(arg uuv_name)/joy"/>
       <rosparam subst_value="true">
