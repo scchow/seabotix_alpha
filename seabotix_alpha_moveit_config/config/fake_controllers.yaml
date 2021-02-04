@@ -1,37 +1,36 @@
 controller_list:
-  - name: fake_Combined_controller
+  - name: fake_arm_controller
+    type: $(arg execution_type)
+    joints:
+      - alpha/joint1
+      - alpha/joint2
+      - alpha/joint3
+      - alpha/joint4
+  - name: fake_gripper_controller
+    type: $(arg execution_type)
+    joints:
+      - alpha/joint5
+      - alpha/joint6
+  - name: fake_vehicle_controller
     type: $(arg execution_type)
     joints:
       - x_displacement
       - y_displacement
       - z_displacement
-      - roll_displacement
-      - pitch_displacement
       - yaw_displacement
-      - joint1
-      - joint2
-      - joint3
-      - joint4
-  - name: fake_Arm_controller
-    type: $(arg execution_type)
-    joints:
-      - joint1
-      - joint2
-      - joint3
-      - joint4
-  - name: fake_Vehicle_controller
+  - name: fake_vehicle_arm_controller
     type: $(arg execution_type)
     joints:
       - x_displacement
       - y_displacement
       - z_displacement
-      - roll_displacement
-      - pitch_displacement
       - yaw_displacement
-  - name: fake_Gripper_controller
-    type: $(arg execution_type)
-    joints:
-      - joint5
+      - alpha/joint1
+      - alpha/joint2
+      - alpha/joint3
+      - alpha/joint4
 initial:  # Define initial robot poses.
-  - group: Combined
-    pose: Origin
+  - group: arm
+    pose: home_arm
+  - group: vehicle_arm
+    pose: home

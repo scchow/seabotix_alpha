@@ -48,9 +48,46 @@
 
 
   <xacro:macro name="seabotix_base" params="namespace *gazebo inertial_reference_frame">
-    <!-- Create a dummy link to avoid :KDL does not support a root link with an inertia warning. -->
-    <!-- <link name="${namespace}/dummy_link"/>       -->
     <!-- base_link according to ROS conventions: x forward, z up -->
+    
+
+    <link name="${namespace}/world_link_x">
+        <inertial>
+        <mass value="0" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="0" ixy="0" ixz="0"
+                iyy="0" iyz="0"
+                izz="0" />
+        </inertial>
+    </link>
+    <link name="${namespace}/world_link_y">
+        <inertial>
+        <mass value="0" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="0" ixy="0" ixz="0"
+                iyy="0" iyz="0"
+                izz="0" />
+        </inertial>
+    </link>
+    <link name="${namespace}/world_link_z">
+        <inertial>
+        <mass value="0" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="0" ixy="0" ixz="0"
+                iyy="0" iyz="0"
+                izz="0" />
+        </inertial>
+    </link>
+    <link name="${namespace}/world_link_yaw">
+        <inertial>
+        <mass value="0" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="0" ixy="0" ixz="0"
+                iyy="0" iyz="0"
+                izz="0" />
+        </inertial>
+    </link>
+
     <link name="${namespace}/base_link">
       <inertial>
         <mass value="${mass}"/>
@@ -76,11 +113,37 @@
 
     </link>
 
-    <!-- <joint name="${namespace}/dummy_to_base" type="fixed">
-      <parent link="${namespace}/dummy_link"/>
-      <child link="${namespace}/base_link"/>
-    </joint> -->
+    <joint name="x_displacement" type="prismatic">
+      <parent link="${namespace}/world_link_x"/>
+      <child link="${namespace}/world_link_y"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <axis xyz="1 0 0"/>
+      <limit effort="100" velocity="0.5" lower="-100" upper="100" /> <!-- Assume we are operating in 200x200x200m cube-->
+    </joint>
 
+    <joint name="y_displacement" type="prismatic">
+      <parent link="${namespace}/world_link_y"/>
+      <child link="${namespace}/world_link_z"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="100" velocity="0.5" lower="-100" upper="100" /> <!-- Assume we are operating in 200x200x200m cube-->
+    </joint>
+
+    <joint name="z_displacement" type="prismatic">
+      <parent link="${namespace}/world_link_z"/>
+      <child link="${namespace}/world_link_yaw"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="100" velocity="0.5" lower="-100" upper="100" /> <!-- Assume we are operating in 200x200x200m cube-->
+    </joint>
+
+    <joint name="yaw_displacement" type="continuous">
+      <parent link="${namespace}/world_link_yaw"/>
+      <child link="${namespace}/base_link"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="100" velocity="${pi/10}"/> <!-- Assume we have no limit on yaw-->
+    </joint>
 
     <!-- Set up hydrodynamic plugin given as input parameter -->
     <xacro:insert_block name="gazebo"/>

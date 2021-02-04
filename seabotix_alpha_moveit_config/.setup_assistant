@@ -1,11 +1,11 @@
 moveit_setup_assistant_config:
   URDF:
     package: seabotix_alpha_description
-    relative_path: urdf/seabotix_alpha_kinematic.xacro
+    relative_path: urdf/seabotix_alpha_moveit.xacro
     xacro_args: ""
   SRDF:
-    relative_path: config/seabotix_alpha.srdf
+    relative_path: config/seabotix.srdf
   CONFIG:
-    author_name: Scott
+    author_name: Scott Chow
     author_email: chows@oregonstate.edu
-    generated_timestamp: 1611820463
+    generated_timestamp: 1612408849
