@@ -36,7 +36,8 @@ class FollowJointTrajectoryActionServer(object):
         start_time = rospy.Duration()
 
         # Path Execution
-        for i in range(len(trajectory_points)):
+        # Skip the first point because it is the starting location
+        for i in range(1, len(trajectory_points)):
             point = trajectory_points[i]
             position = point.positions
             velocity = point.velocities

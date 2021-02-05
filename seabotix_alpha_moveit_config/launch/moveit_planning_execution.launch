@@ -1,12 +1,10 @@
 <launch>
 
   <!-- Publish the TFs needed for MoveIt! -->
-  <node name="tf_rebroadcaster" pkg="seabotix_alpha_description" type="tf_republisher.py"  output="screen" respawn="false" respawn_delay="0">
-  </node>
+  <node name="tf_rebroadcaster" pkg="seabotix_alpha_description" type="tf_republisher.py"  output="screen" respawn="false" respawn_delay="0"/>
 
   <!-- Publish the joint states needed for MoveIt! -->
-  <node name="joint_state_remapper" pkg="seabotix_alpha_description" type="joint_state_republisher.py"  output="screen" respawn="false" respawn_delay="0">
-  </node>
+  <node name="joint_state_remapper" pkg="seabotix_alpha_description" type="joint_state_republisher.py"  output="screen" respawn="false" respawn_delay="0"/>
 
 <!-- 
   # The planning and execution components of MoveIt! configured to 
