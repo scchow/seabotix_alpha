@@ -19,7 +19,7 @@ import rospy
 from copy import deepcopy
 from uuv_manipulator_interfaces import ArmInterface
 from PID import PIDRegulator
-from sensor_msgs.msg import JointState
+from sensor_msgs.msg import Joy
 from std_msgs.msg import Float64
 
 
@@ -39,8 +39,33 @@ class JointPositionController:
         # Axes gain values
         self._axes_gain = dict()
 
-        # arm topic subscriber
-        self._arm_sub = rospy.Subscriber('arm_control/command', JointState, self._joint_command_cb)
+        # Default for the RB button of the XBox 360 controller
+        self._deadman_button = 5
+        if rospy.has_param('~deadman_button'):
+            self._deadman_button = int(rospy.get_param('~deadman_button'))
+
+        # If these buttons are pressed, the arm will not move
+        if rospy.has_param('~exclusion_buttons'):
+            self._exclusion_buttons = rospy.get_param('~exclusion_buttons')
+            if type(self._exclusion_buttons) in [float, int]:
+                self._exclusion_buttons = [int(self._exclusion_buttons)]
+            elif type(self._exclusion_buttons) == list:
+                for n in self._exclusion_buttons:
+                    if type(n) not in [float, int]:
+                        raise rospy.ROSException('Exclusion buttons must be an'
+                                                 ' integer index to the joystick button')
+        else:
+            self._exclusion_buttons = list()
+
+        # Default for the start button of the XBox 360 controller
+        self._home_button = 7
+        if rospy.has_param('~home_button'):
+            self._home_button = int(rospy.get_param('~home_button'))
+
+        # Last joystick update timestamp
+        self._last_joy_update = rospy.get_time()
+        # Joystick topic subscriber
+        self._joy_sub = rospy.Subscriber('joy', Joy, self._joy_callback)
 
         # Reading the controller configuration
         controller_config = rospy.get_param('~controller_config')
@@ -57,6 +82,8 @@ class JointPositionController:
                             controller_config[tag]['topic'],
                             Float64,
                             queue_size=1)
+                        self._axes[joint] = controller_config[tag]['joint_input_axis']
+                        self._axes_gain[joint] = controller_config[tag]['axis_gain']
 
                         # Setting the starting reference to the home position
                         # in the robot parameters file
@@ -83,18 +110,29 @@ class JointPositionController:
                 output = self._arm_interface.joint_limits[joint]['upper']
         return output
 
-    def _joint_command_cb(self, msg):
+    def _joy_callback(self, joy):
         try:
-            # Parse the JointState input to set the joint angle reference
-            for i, joint in enumerate(msg.name):
-                if joint in self._arm_interface.joint_names:
-                    self._reference_pos[joint] = msg.position[i]
-                    # Check for the joint limits
-                    # self._reference_pos[joint] = self._check_joint_limits(self._reference_pos[joint], joint)
-                else:
-                    error_str = "Joint Controller received trajectory with goal for joint %s but the only controllable joint are: " % joint
-                    error_str += str(self._arm_interface.joint_names)
-                    rospy.logwarn(error_str)                    
+            # If deadman button is not pressed, do nothing
+            if not joy.buttons[self._deadman_button] and self._deadman_button != -1:
+                return
+            # If any exclusion buttons are pressed, do nothing
+            for n in self._exclusion_buttons:
+                if joy.buttons[n] == 1:
+                    return
+            if joy.buttons[self._home_button]:
+                self._reference_pos = deepcopy(self._arm_interface.home)
+                self._last_joy_update = rospy.get_time()
+            else:
+                # Parse the joystick input to set the joint angle reference
+                for joint in self._arm_interface.joint_names:
+                    if abs(joy.axes[self._axes[joint]]) < 0.8:
+                        continue
+                    else:
+                        self._reference_pos[joint] += self._axes_gain[joint] * \
+                            joy.axes[self._axes[joint]]
+                        # Check for the joint limits
+                        self._reference_pos[joint] = self._check_joint_limits(self._reference_pos[joint], joint)
+                self._last_joy_update = rospy.get_time()
         except Exception, e:
             print 'Error during joy parsing, message=', e
 
