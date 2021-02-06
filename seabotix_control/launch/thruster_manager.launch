@@ -1,3 +1,4 @@
+<!-- This file was copied from uuv_control/uuv_thruster_manager/launch/thruster_manager.launch -->
 <launch>
   <arg name="model_name" />
   <arg name="uuv_name" default="$(arg model_name)"/>

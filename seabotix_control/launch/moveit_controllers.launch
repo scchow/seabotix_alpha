@@ -1,4 +1,6 @@
-<!-- This file was copied from uuv_control_cascaded_pid/launch/joy_velocity.launch -->
+<!-- This file was copied from uuv_control_cascaded_pid/launch/joy_velocity.launch
+And edited down to only instantiate the controllers to be interfaced with MoveIt.
+Also added a position controller down the cascaded PID -->
 <launch>
   <arg name="model_name" />
   <arg name="uuv_name" default="$(arg model_name)"/>
@@ -12,6 +14,7 @@
   <group ns="$(arg uuv_name)">
     <rosparam file="$(find seabotix_control)/config/inertial.yaml" command="load"/>
     <rosparam file="$(find seabotix_control)/config/vel_pid_control.yaml" command="load"/>
+    <!-- TODO see if we might need  -->
 
     <node pkg="uuv_control_cascaded_pid" type="AccelerationControl.py" name="acceleration_control"
           output="screen">
@@ -23,12 +26,13 @@
       <remap from="odom" to="/$(arg uuv_name)/pose_gt"/>
       <remap from="cmd_accel" to="/$(arg uuv_name)/cmd_accel"/>
     </node>
+    
+    <node pkg="uuv_control_cascaded_pid" type="PositionControl.py" name="position_control"
+        output="screen">
+      <remap from="odom" to="/$(arg uuv_name)/pose_gt"/>
+      <remap from="cmd_pose" to="/$(arg uuv_name)/cmd_pose"/>
+      <remap from="cmd_vel" to="/$(arg uuv_name)/cmd_vel"/>      
+    </node>
   </group>
 
-  <include file="$(find seabotix_control)/launch/uuv_teleop.launch">
-    <arg name="uuv_name" value="$(arg uuv_name)"/>
-    <arg name="joy_id" value="$(arg joy_id)"/>
-    <arg name="output_topic" value="cmd_vel"/>
-    <arg name="message_type" value="twist"/>
-  </include>
 </launch>

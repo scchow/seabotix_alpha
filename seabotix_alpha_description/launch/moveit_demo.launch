@@ -25,7 +25,7 @@
         <arg name="yaw" value="3.14"/>
     </include>
    
-   <!-- Create Controllers -->
+   <!-- Create Arm Controllers -->
     <include file="$(find alpha_control)/launch/joint_control.launch">
         <arg name="uuv_name" value="$(arg namespace)"/>
     </include>
@@ -35,8 +35,8 @@
     <node name="gripper_control_action_server" pkg="seabotix_alpha_description" type="gripper_control_action_server.py"  output="screen" respawn="false" respawn_delay="0"/>
     <node name="vehicle_control_action_server" pkg="seabotix_alpha_description" type="vehicle_control_action_server.py"  output="screen" respawn="false" respawn_delay="0"/>
 
-    <!-- Velocity teleop (UUV stays in position when joystick is not used) -->
-    <include file="$(find seabotix_control)/launch/joy_velocity.launch">
+    <!-- Vehicle Controllers -->
+    <include file="$(find seabotix_control)/launch/moveit_controllers.launch">
         <arg name="uuv_name" value="$(arg namespace)" />
         <arg name="model_name" value="seabotix" />
     </include>  

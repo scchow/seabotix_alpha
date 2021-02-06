@@ -13,7 +13,7 @@ from trajectory_msgs.msg import JointTrajectory
 # from robot_movement_interface.msg import *
 from sensor_msgs.msg	 import JointState
 
-class FollowJointTrajectoryActionServer(object):
+class ArmActionServer(object):
     # create messages that are used to publish feedback/result
     _feedback = FollowJointTrajectoryFeedback()
     _result = FollowJointTrajectoryResult()
@@ -59,5 +59,5 @@ class FollowJointTrajectoryActionServer(object):
         
 if __name__ == '__main__':
     rospy.init_node('arm_controller')
-    server = FollowJointTrajectoryActionServer(rospy.get_name())
+    server = ArmActionServer(rospy.get_name())
     rospy.spin()
