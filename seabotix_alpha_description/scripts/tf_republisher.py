@@ -32,13 +32,14 @@ class TFRebroadcaster(object):
         # create a tf broadcaster
         self.br = tf2_ros.TransformBroadcaster()
 
+        # broadcast at 10 Hz
         self.rate = rospy.Rate(10.0)
         self.run()    
 
     def run(self):
         while not rospy.is_shutdown():
             try:
-                trans = self.tfBuffer.lookup_transform('world', 'seabotix/base_link', rospy.Time())
+                trans = self.tfBuffer.lookup_transform('world', 'seabotix/base_link', rospy.Time(0))
                 
                 # This deep copy might not be necessary
                 t = copy.deepcopy(trans)
@@ -67,7 +68,9 @@ class TFRebroadcaster(object):
                 # should be identity transform from "world" frame
                 t.child_frame_id = "world_link_x"
                 t.transform.translation.x = 0.0
-                self.br.sendTransform(t)            
+                self.br.sendTransform(t)   
+
+                self.rate.sleep()      
             
             except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):
                 self.rate.sleep()
