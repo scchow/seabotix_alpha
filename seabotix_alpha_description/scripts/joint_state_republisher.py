@@ -8,6 +8,7 @@ import tf2_ros
 from sensor_msgs.msg import JointState
 from nav_msgs.msg import Odometry
 import copy
+from math import atan2
 
 """
 The joint state republisher class gets joint states from seabotix/joint_states
@@ -39,10 +40,17 @@ class JointStateRepublisher(object):
 
     def odom_callback(self, msg):
         pose = msg.pose.pose.position
-        orientation = msg.pose.pose.orientation
+        orient = msg.pose.pose.orientation
         pose_vel = msg.twist.twist.linear
         orientation_vel = msg.twist.twist.angular
-        self.position = [pose.x, pose.y, pose.z, orientation.z]
+
+        # Convert from quaternion to Euler angle
+        # https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles
+        siny_cosp = 2*(orient.w * orient.z + orient.x*orient.y)
+        cosy_cosp = 1-2*(orient.y**2 + orient.z**2)
+        yaw = atan2(siny_cosp, cosy_cosp)
+
+        self.position = [pose.x, pose.y, pose.z, yaw]
         self.velocity = [pose_vel.x, pose_vel.y, pose_vel.z, orientation_vel.z]
 
     def joint_state_callback(self, msg):

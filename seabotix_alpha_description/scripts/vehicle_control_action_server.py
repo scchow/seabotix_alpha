@@ -10,9 +10,7 @@ from control_msgs.msg    import FollowJointTrajectoryResult
 from control_msgs.msg    import FollowJointTrajectoryFeedback
 from control_msgs.msg    import FollowJointTrajectoryAction
 from geometry_msgs.msg import PoseStamped, Pose, Point, Quaternion
-from math import pi
-
-deg_to_rad = pi/180.
+from math import pi, cos, sin
 
 class VehicleActionServer(object):
     # create messages that are used to publish feedback/result
@@ -32,7 +30,7 @@ class VehicleActionServer(object):
         joint_names = goal.trajectory.joint_names
         trajectory_points = goal.trajectory.points
         rospy.loginfo("Vehicle Controller Received Goal")
-        # rospy.logdebug(goal)
+        rospy.logdebug(goal)
         # Start at t=0
         start_time = rospy.Duration()
 
@@ -53,15 +51,23 @@ class VehicleActionServer(object):
             position.x = goal_pose[joint_to_index["x_displacement"]]
             position.y = goal_pose[joint_to_index["y_displacement"]]
             position.z = goal_pose[joint_to_index["z_displacement"]]
-            yaw_angle_deg = goal_pose[joint_to_index["yaw_displacement"]]
-            orientation = Quaternion(0, 0, yaw_angle_deg*deg_to_rad, 0)
+            yaw = goal_pose[joint_to_index["yaw_displacement"]]
+
+            # Converting yaw to quaternion
+            # See https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles
+            # For better intuition about quaternions: https://eater.net/quaternions
+            orientation = Quaternion(0, 0, sin(0.5*yaw), cos(0.5*yaw))
             pose = Pose(position, orientation)
 
             pose_stamped_msg = PoseStamped(header, pose)
             self.pub.publish(pose_stamped_msg)
 
-            rospy.sleep(time_from_start - start_time)
-            start_time += time_from_start
+            # Assume waypoints are close enough that 2 second sleep is enough
+            # rospy.loginfo("Sent message:")
+            # rospy.loginfo(pose_stamped_msg)
+            rospy.sleep(2)
+            # rospy.sleep(time_from_start - start_time)
+            # start_time += time_from_start
         self._action_server.set_succeeded()
 
         

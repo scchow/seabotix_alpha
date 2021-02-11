@@ -50,8 +50,10 @@ class ArmActionServer(object):
             joint_state_msg = JointState(header, joint_names, position, velocity, effort)
             self.pub.publish(joint_state_msg)
 
-            rospy.sleep(time_from_start - start_time)
-            start_time += time_from_start
+            # Assume waypoints are close enough that 2 second sleep is enough
+            rospy.sleep(2)
+            # rospy.sleep(time_from_start - start_time)
+            # start_time += time_from_start
 
 
         self._action_server.set_succeeded()
