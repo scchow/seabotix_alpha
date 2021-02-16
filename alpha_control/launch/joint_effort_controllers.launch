@@ -2,30 +2,9 @@
   <arg name="uuv_name" />
   <arg name="arm_name" default="alpha"/>
 
-  <rosparam subst_value="true">
-    $(arg uuv_name):
-      $(arg arm_name):
-        joint1:
-          controller:
-            type: effort_controllers/JointEffortController
-            joint: $(arg arm_name)/joint1
-            pid: {p: 0, i: 0, d: 0}
-        joint2:
-          controller:
-            type: effort_controllers/JointEffortController
-            joint: $(arg arm_name)/joint2
-            pid: {p: 0, i: 0, d: 0}
-        joint3:
-          controller:
-            type: effort_controllers/JointEffortController
-            joint: $(arg arm_name)/joint3
-            pid: {p: 0, i: 0, d: 0}
-        joint4:
-          controller:
-            type: effort_controllers/JointEffortController
-            joint: $(arg arm_name)/joint4
-            pid: {p: 0, i: 0, d: 0}
-  </rosparam>
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find alpha_control)/config/alpha_control.yaml" command="load"/>
+
 
   <group ns="$(arg uuv_name)">
     <!-- load the controllers -->

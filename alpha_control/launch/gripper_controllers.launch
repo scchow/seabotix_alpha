@@ -7,20 +7,8 @@
   <arg name="open_button" default="1"/>
   <arg name="close_button" default="2"/>
 
-  <rosparam subst_value="true">
-    $(arg uuv_name):
-      $(arg arm_name):
-        joint5:
-          controller:
-            type: effort_controllers/JointEffortController
-            joint: $(arg arm_name)/joint5
-            pid: {p: 0.00, i: 0, d: 0}
-        joint6:
-          controller:
-            type: effort_controllers/JointEffortController
-            joint: $(arg arm_name)/joint6
-            pid: {p: 0.00, i: 0, d: 0}
-  </rosparam>
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find alpha_control)/config/gripper_control.yaml" command="load"/>
 
   <group ns="$(arg uuv_name)">
     <!-- load the controllers -->

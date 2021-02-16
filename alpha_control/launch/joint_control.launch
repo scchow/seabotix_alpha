@@ -1,21 +1,13 @@
 <launch>
   <arg name="uuv_name" />
   <arg name="arm_name" default="alpha"/>
+
   <!-- Arm will only move while the RB button (XBox 360 controller) is pressed -->
   <arg name="deadman_button" default="5"/>
   <!-- The arm will not move if the LB button (XBox 360 controller) is pressed -->
   <arg name="exclusion_button" default="4"/>
-
-  <!-- Default joystick mapping (XBox 360 controller) -->
-  <arg name="axis_joint1" default="3"/> <!-- Right Stick Left/Right-->
-  <arg name="axis_joint2" default="4"/> <!-- Right Stick Up/Down -->
-  <arg name="axis_joint3" default="1"/> <!-- Left Stick Up/Down-->
-  <arg name="axis_joint4" default="0"/> <!-- Turn Wrist: Left Stick Left/Right -->
-  <arg name="axis_extra0" default="2"/> <!-- Left Trigger -->
-  <arg name="axis_extra1" default="5"/> <!-- Right Trigger-->
   <arg name="gripper_open_button" default="1"/> <!-- B -->
   <arg name="gripper_close_button" default="2"/> <!-- X -->
-  <arg name="home_button" default="7"/> <!-- Home -->
 
   <arg name="joint_p" default="0.0"/>
   <arg name="joint_i" default="0.0"/>
@@ -43,41 +35,29 @@
       output="screen"/>
 
     <!-- Starting direct joint position control node -->
-    <node name="joint_position_controller_$(arg arm_name)" pkg="uuv_manipulators_control" type="joint_position_controller.py"
+    <node name="joint_position_controller_$(arg arm_name)" pkg="alpha_control" type="joint_position_controller.py"
       output="screen">
-      <remap from="joy" to="/$(arg uuv_name)/joy"/>
       <rosparam subst_value="true">
-        exclusion_buttons: $(arg exclusion_button)
-        deadman_button: $(arg deadman_button)
-        home_button: $(arg home_button)
         controller_config:
           joint1:
-            joint_input_axis: $(arg axis_joint1)
-            axis_gain: 0.01
             topic: /$(arg uuv_name)/$(arg arm_name)/joint1/controller/command
             controller:
               p: 50.0
               i: 0
               d: 5.0
           joint2:
-            joint_input_axis: $(arg axis_joint2)
-            axis_gain: 0.01
             topic: /$(arg uuv_name)/$(arg arm_name)/joint2/controller/command
             controller:
               p: 25.0
               i: 0
               d: 5.0
           joint3:
-            joint_input_axis: $(arg axis_joint3)
-            axis_gain: 0.01
             topic: /$(arg uuv_name)/$(arg arm_name)/joint3/controller/command
             controller:
               p: 17.0
               i: 0
               d: 0.5
           joint4:
-            joint_input_axis: $(arg axis_joint4)
-            axis_gain: 0.01
             topic: /$(arg uuv_name)/$(arg arm_name)/joint4/controller/command
             controller:
               p: 10.0

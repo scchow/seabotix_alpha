@@ -1,0 +1,21 @@
+<package>
+
+  <name>seabotix_control</name>
+  <version>0.3.0</version>
+  <description>
+     A package containing controllers for the seabotix vehicle
+  </description>
+  <author email="chows@oregonstate.edu">Scott</author>
+  <maintainer email="chows@oregonstate.edu">Scott</maintainer>
+
+  <license>BSD</license>
+
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- This package is referenced in the warehouse launch files, but does not build out of the box at the moment. Commented the dependency until this works. -->
+  <!-- <run_depend>warehouse_ros_mongo</run_depend> -->
+  <run_depend>seabotix_alpha_description</run_depend>
+
+
+</package>

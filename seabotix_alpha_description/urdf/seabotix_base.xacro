@@ -48,6 +48,8 @@
 
 
   <xacro:macro name="seabotix_base" params="namespace *gazebo inertial_reference_frame">
+    <!-- Create a dummy link to avoid :KDL does not support a root link with an inertia warning. -->
+    <!-- <link name="${namespace}/dummy_link"/>       -->
     <!-- base_link according to ROS conventions: x forward, z up -->
     <link name="${namespace}/base_link">
       <inertial>
@@ -72,29 +74,13 @@
         </geometry>
       </collision>
 
-      <!-- bottom plate -->
-      <!-- <collision>
-        <origin xyz="0 0 ${-height/2.0}" rpy="0 0 0"/>
-        <geometry>
-          <box size="${length} ${width+0.10} 0.10"/>
-        </geometry>
-      </collision> -->
-      <!-- top plate -->
-      <!-- <collision>
-        <origin xyz="0 0 ${height/2.0}" rpy="0 0 0"/>
-        <geometry><box size="${length} ${width+0.10} 0.10"/></geometry>
-      </collision> -->
-      <!-- left / right sides -->
-      <!-- <collision>
-        <origin xyz="0 ${-width/2.0} 0" rpy="0 0 0"/>
-        <geometry><box size="${length} 0.10 ${height}"/></geometry>
-      </collision>
-      <collision>
-        <origin xyz="0 ${width/2.0} 0" rpy="0 0 0"/>
-        <geometry><box size="${length} 0.10 ${height}"/></geometry>
-      </collision> -->
-
     </link>
+
+    <!-- <joint name="${namespace}/dummy_to_base" type="fixed">
+      <parent link="${namespace}/dummy_link"/>
+      <child link="${namespace}/base_link"/>
+    </joint> -->
+
 
     <!-- Set up hydrodynamic plugin given as input parameter -->
     <xacro:insert_block name="gazebo"/>

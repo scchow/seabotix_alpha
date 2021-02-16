@@ -14,6 +14,15 @@ without any uuv simulator dependencies -->
   <!-- Fluid density -->
   <xacro:property name="rho" value="1028"/>
 
+<!-- Vehicle ~ 0.6096 m (2ft) x 0.4445 (17.5in) x 0.4572 (18in)-->
+  <xacro:property name="length" value="0.625"/>
+  <xacro:property name="width" value="0.4572"/> 
+  <xacro:property name="height" value="0.4572"/>
+
+  <!-- The namespace_arm for the seabotix alpha arm -->
+  <xacro:property name="namespace_vehicle" value="seabotix"/>
+  <xacro:property name="namespace_arm" value="${namespace_vehicle}/alpha"/>
+
   <!--
     Visual mesh file for the vehicle, usually in DAE (Collada) format. Be sure to store the
     mesh with the origin of the mesh on the same position of the center of mass, otherwise
@@ -32,7 +41,7 @@ without any uuv simulator dependencies -->
   -->
 
   <!-- Vehicle macro -->
-  <!-- <xacro:macro name="seabotix_alpha_base" params="namespace *gazebo"> -->
+  <!-- <xacro:macro name="seabotix_alpha_base" params="namespace_arm *gazebo"> -->
 
     <link name="base_link">
         <inertial>
@@ -45,7 +54,7 @@ without any uuv simulator dependencies -->
     </link>
     <link name="world_link_x">
         <inertial>
-        <mass value="${mass}" />
+        <mass value="0" />
         <origin xyz="${cog}" rpy="0 0 0"/>
         <inertia ixx="0" ixy="0" ixz="0"
                 iyy="0" iyz="0"
@@ -54,7 +63,7 @@ without any uuv simulator dependencies -->
     </link>
     <link name="world_link_y">
         <inertial>
-        <mass value="${mass}" />
+        <mass value="0" />
         <origin xyz="${cog}" rpy="0 0 0"/>
         <inertia ixx="0" ixy="0" ixz="0"
                 iyy="0" iyz="0"
@@ -63,7 +72,7 @@ without any uuv simulator dependencies -->
     </link>
     <link name="world_link_z">
         <inertial>
-        <mass value="${mass}" />
+        <mass value="0" />
         <origin xyz="${cog}" rpy="0 0 0"/>
         <inertia ixx="0" ixy="0" ixz="0"
                 iyy="0" iyz="0"
@@ -72,7 +81,7 @@ without any uuv simulator dependencies -->
     </link>
     <link name="world_link_roll">
         <inertial>
-        <mass value="${mass}" />
+        <mass value="0" />
         <origin xyz="${cog}" rpy="0 0 0"/>
         <inertia ixx="0" ixy="0" ixz="0"
                 iyy="0" iyz="0"
@@ -81,7 +90,7 @@ without any uuv simulator dependencies -->
     </link>
     <link name="world_link_pitch">
         <inertial>
-        <mass value="${mass}" />
+        <mass value="0" />
         <origin xyz="${cog}" rpy="0 0 0"/>
         <inertia ixx="0" ixy="0" ixz="0"
                 iyy="0" iyz="0"
@@ -90,7 +99,7 @@ without any uuv simulator dependencies -->
     </link>
 
       <!-- Rigid body description of the base link -->
-      <!-- <link name="${namespace}/base_link"> -->
+      <!-- <link name="${namespace_arm}/base_link"> -->
       <link name="world_link_yaw">
         <!--
           Be careful to setup the coefficients for the inertial tensor,
@@ -122,7 +131,7 @@ without any uuv simulator dependencies -->
       </link>
 
       <!-- robot name="OSU vLBV300 Volturnus" -->
-      <xacro:property name="pi" value="3.1515926535897931" />
+      <!-- <xacro:property name="pi" value="3.1515926535897931" /> -->
       <xacro:property name="deg2rad" value="${pi/180}" />
 
       <!-- Without trig, angles are a pain in the arse. Beam angle 30 -->
@@ -480,7 +489,7 @@ without any uuv simulator dependencies -->
       </joint>
 
 <!-- Reach 5 Arm -->
-  <link name="arm_base_link">
+  <link name="${namespace_arm}/base_link">
     <visual>
       <geometry>
 	<mesh filename="package://reach_system_one_support/meshes/reach5mini/visual/Base.stl" />
@@ -501,7 +510,7 @@ without any uuv simulator dependencies -->
     </inertial>
   </link>
   
-  <link name="shoulder_link">
+  <link name="${namespace_arm}/shoulder_link">
     <visual>
       <geometry>
         <mesh filename="package://reach_system_one_support/meshes/reach5mini/visual/ShoulderJoint.stl" />
@@ -522,7 +531,7 @@ without any uuv simulator dependencies -->
     </inertial>
   </link>
     
-  <link name="upper_arm_link">
+  <link name="${namespace_arm}/upper_arm_link">
     <visual>
       <geometry>
         <mesh filename="package://reach_system_one_support/meshes/reach5mini/visual/UpperArm.stl" />
@@ -549,7 +558,7 @@ without any uuv simulator dependencies -->
     </inertial>
   </link>
 
-  <link name="forearm_link">
+  <link name="${namespace_arm}/forearm_link">
     <visual>
       <geometry>
         <mesh filename="package://reach_system_one_support/meshes/reach5mini/visual/ForearmJoint.stl" />
@@ -570,7 +579,7 @@ without any uuv simulator dependencies -->
     </inertial>
   </link>	
 
-  <link name="wrist_link">
+  <link name="${namespace_arm}/wrist_link">
     <visual>
       <geometry>
         <mesh filename="package://reach_system_one_support/meshes/reach5mini/visual/Wrist.stl" />
@@ -591,10 +600,10 @@ without any uuv simulator dependencies -->
     </inertial>
   </link>
 
-  <link name="tip">
+  <link name="${namespace_arm}/tip">
   </link>
   
-  <link name="jaw1">
+  <link name="${namespace_arm}/jaw1">
     <visual>
       <geometry>
       	<mesh filename="package://reach_system_one_support/meshes/reach5mini/visual/Jaw1.stl" />
@@ -610,7 +619,7 @@ without any uuv simulator dependencies -->
     </collision>
   </link>
 
-  <link name="jaw2">
+  <link name="${namespace_arm}/jaw2">
     <visual>
       <geometry>
       	<mesh filename="package://reach_system_one_support/meshes/reach5mini/visual/Jaw2.stl" />
@@ -627,57 +636,57 @@ without any uuv simulator dependencies -->
   </link>
 
 
-  <joint name="joint1" type="revolute">
-    <parent link="arm_base_link"/>
-    <child link="shoulder_link"/>
+  <joint name="${namespace_arm}/joint1" type="revolute">
+    <parent link="${namespace_arm}/base_link"/>
+    <child link="${namespace_arm}/shoulder_link"/>
     <origin xyz="0 0 0" rpy="0 0 0"/> <!--Was <origin xyz="0 0 0" rpy="0 0 3.141592/> before-->
     <axis xyz="0 0 1"/>
-    <limit effort="9.0" lower="0.0" upper = "6.2" velocity="0.5"/>
+    <limit effort="9.0" lower="-${pi}" upper = "${pi}" velocity="0.5"/>
   </joint>
 
-  <joint name="joint2" type="revolute">
-    <parent link="shoulder_link"/>
-    <child link="upper_arm_link"/>
+  <joint name="${namespace_arm}/joint2" type="revolute">
+    <parent link="${namespace_arm}/shoulder_link"/>
+    <child link="${namespace_arm}/upper_arm_link"/>
     <origin xyz="0.020 0 0.046" rpy="1.57075 1.3 0"/>
     <axis xyz="0 0 1"/>
     <limit effort="9.0" lower="0.0" upper = "3.5" velocity="0.5"/>
   </joint>
 
-  <joint name="joint3" type="revolute">
-    <parent link="upper_arm_link"/>
-    <child link="forearm_link"/>
+  <joint name="${namespace_arm}/joint3" type="revolute">
+    <parent link="${namespace_arm}/upper_arm_link"/>
+    <child link="${namespace_arm}/forearm_link"/>
     <origin xyz="0.15 0 0" rpy="3.1415 0 1.3"/>
     <axis xyz="0 0 1"/>
     <limit effort="9.0" lower="0.0" upper = "3.5" velocity="0.5"/>
   </joint>
 
-  <joint name="joint4" type="revolute">
-    <parent link="forearm_link"/>
-    <child link="wrist_link"/>
+  <joint name="${namespace_arm}/joint4" type="revolute">
+    <parent link="${namespace_arm}/forearm_link"/>
+    <child link="${namespace_arm}/wrist_link"/>
     <origin xyz="0.020 0 0" rpy="-1.57075 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="5.0" lower="0.0" upper = "6.0" velocity="1.0"/>
+            <limit effort="5.0" lower="${-pi}" upper = "${pi}" velocity="1.0"/>
   </joint>
 
-  <joint name="joint5" type="revolute">
-    <parent link="wrist_link"/>
-    <child link="jaw1"/>
+  <joint name="${namespace_arm}/joint5" type="revolute">
+    <parent link="${namespace_arm}/wrist_link"/>
+    <child link="${namespace_arm}/jaw1"/>
     <origin xyz="0.015 0 -0.140" rpy="1.57075 0 0"/>
     <axis xyz="0 0 1"/>
     <limit effort="5.0" lower="0.0" upper = "0.5" velocity="0.5"/>
   </joint>
 
-  <joint name="joint6" type="revolute">
-    <parent link="wrist_link"/>
-    <child link="jaw2"/>
+  <joint name="${namespace_arm}/joint6" type="revolute">
+    <parent link="${namespace_arm}/wrist_link"/>
+    <child link="${namespace_arm}/jaw2"/>
     <origin xyz="-0.015 0 -0.140" rpy="1.57075 0 0"/>
     <axis xyz="0 0 -1"/>
     <limit effort="5.0" lower="0.0" upper = "0.5" velocity="0.5"/>
   </joint>
 
-  <joint name="arm_to_tip" type="fixed">
-    <parent link="wrist_link"/>
-    <child link="tip"/>
+  <joint name="${namespace_arm}/arm_to_tip" type="fixed">
+    <parent link="${namespace_arm}/wrist_link"/>
+    <child link="${namespace_arm}/tip"/>
     <origin xyz="0 0 -0.180" rpy="0 1.57075 0"/>
   </joint>
   
@@ -706,20 +715,22 @@ without any uuv simulator dependencies -->
       <limit effort="100" velocity="0.5" lower="-10" upper="10" /> <!-- Assume we are operating in 20x20x20m cube-->
     </joint>
 
-    <joint name="roll_displacement" type="revolute">
+    <joint name="roll_displacement" type="fixed">
       <parent link="world_link_z"/>
       <child link="world_link_roll"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <axis xyz="1 0 0"/>
-      <limit effort="100" velocity="${pi/10}" lower="${-pi/2}" upper="${pi/2}" /> <!-- Assume we can roll by pi/2-->
+      <!-- <axis xyz="1 0 0"/> -->
+      <!-- <limit effort="100" velocity="${pi/10}" lower="${-pi/2}" upper="${pi/2}" />  -->
+      <!-- Assume we can roll by pi/2-->
     </joint>
 
-    <joint name="pitch_displacement" type="revolute">
+    <joint name="pitch_displacement" type="fixed">
       <parent link="world_link_roll"/>
       <child link="world_link_pitch"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <axis xyz="0 1 0"/>
-      <limit effort="100" velocity="${pi/10}" lower="${-pi/2}" upper="${pi/2}" /> <!-- Assume we can pitch by pi/2-->
+      <!-- <limit effort="100" velocity="${pi/10}" lower="${-pi/2}" upper="${pi/2}" />  -->
+      <!-- Assume we can pitch by pi/2-->
     </joint>
 
     <joint name="yaw_displacement" type="continuous">
@@ -732,21 +743,21 @@ without any uuv simulator dependencies -->
 
     <!-- Add a link attaching the vehicle to the world base link -->
     <joint name="joint_vehicle_base_world" type="fixed">
-      <!-- <parent link="${namespace}/base_link"/> -->
+      <!-- <parent link="${namespace_arm}/base_link"/> -->
       <parent link="world_link_yaw"/>
       <child link="vehicle_base_link"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </joint>
 
     <!-- Add a link attaching the arm to the world base link -->
-    <joint name="joint_arm_base_world" type="fixed">
-      <!-- <parent link="${namespace}/base_link"/> -->
-      <parent link="world_link_yaw"/>
-      <child link="arm_base_link"/>
-      <origin rpy="0 0 0" xyz="${0.25 + 0.075 + 0.075 +0.05} 0 0"/>
+    <joint name="joint_arm_vehicle" type="fixed">
+      <!-- <parent link="${namespace_arm}/base_link"/> -->
+      <parent link="vehicle_base_link"/>
+      <child link="${namespace_arm}/base_link"/>
+      <origin xyz="0.0 0 -${3*height/4}" rpy="0 ${pi/2} 0"/>
     </joint>
 
-    <!-- <gazebo reference="${namespace}/base_link"> -->
+    <!-- <gazebo reference="${namespace_arm}/base_link"> -->
     <gazebo reference="world_link_yaw">
       <selfCollide>false</selfCollide>
     </gazebo>

@@ -1,0 +1,19 @@
+<launch>
+  <arg name="uuv_name" />
+  <arg name="arm_name" default="alpha"/>
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find alpha_control)/config/alpha_control.yaml" command="load"/>
+
+
+  <group ns="$(arg uuv_name)">
+    <!-- load the controllers -->
+    <node name="controller_spawner_$(arg arm_name)"
+          pkg="controller_manager"
+          type="spawner"
+          respawn="false"
+          output="screen"
+          ns="/$(arg uuv_name)"
+          args="/$(arg uuv_name)/$(arg arm_name)/arm_controller"/>
+  </group>
+</launch>

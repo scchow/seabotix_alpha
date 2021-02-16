@@ -4,7 +4,7 @@ thruster_manager:
   thruster_topic_prefix: thrusters/
   thruster_topic_suffix: /input
   thruster_frame_base: thruster_
-  max_thrust: 200.0
+  max_thrust: 177.5 # 18.1 kg f to Newtons
   timeout: -1
   update_rate: 50
   conversion_fcn: proportional

@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
+<!-- 
+This file launches a Gazebo Simulation with just the alpha arm
+and joystick control for the arm 
+-->
 <launch>
     <arg name="gui" default="true"/>
     <arg name="paused" default="false"/>
     <arg name="world_name" default="$(find seabotix_alpha_description)/worlds/valve_manipulation_demo.world"/>
-    <arg name="namespace" default="base"/>
+    <arg name="namespace" default="seabotix"/>
     <arg name="joy_id" default="0"/>
 
     <!-- use Gazebo's empty_world.launch with uuv_dave_ocean_waves.world -->
@@ -26,11 +30,7 @@
         <arg name="yaw" value="3.14"/>
     </include>
 
-    <!-- <include file="$(find oberon7_control)/launch/joint_control.launch">
-        <arg name="uuv_name" value="$(arg namespace)"/>
-    </include> -->
-    
-    <include file="$(find alpha_control)/launch/joint_control.launch">
+    <include file="$(find alpha_control)/launch/joint_control_joystick.launch">
         <arg name="uuv_name" value="$(arg namespace)"/>
     </include>
 

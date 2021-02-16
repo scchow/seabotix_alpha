@@ -3,10 +3,10 @@
   <name>seabotix_alpha_moveit_config</name>
   <version>0.3.0</version>
   <description>
-     An automatically generated package with all the configuration and launch files for using the seabotix_alpha with the MoveIt Motion Planning Framework
+     An automatically generated package with all the configuration and launch files for using the seabotix with the MoveIt Motion Planning Framework
   </description>
-  <author email="chows@oregonstate.edu">Scott</author>
-  <maintainer email="chows@oregonstate.edu">Scott</maintainer>
+  <author email="chows@oregonstate.edu">Scott Chow</author>
+  <maintainer email="chows@oregonstate.edu">Scott Chow</maintainer>
 
   <license>BSD</license>
 
