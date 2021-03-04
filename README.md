@@ -14,6 +14,12 @@ After building/installing Project Dave, clone this repository into your catkin w
 
 Then rebuild the catkin workspace and `source devel/setup.bash` as usual.
 
+Make sure that all the Python files in the `seabotix_alpha/seabotix_alpha_description/scripts` are given permission to be executable by running:
+
+```
+chmod +x seabotix_alpha/seabotix_alpha_description/scripts/*.py
+```
+
 Launch files
 ---
 
@@ -26,3 +32,10 @@ Launch files
 - `roslaunch seabotix_alpha_moveit_config demo.launch` - launches the MoveIt! Rviz interface to generate plans for the vehicle + arm and execute on a dummy robot.
 
 - `roslaunch seabotix_alpha_description moveit_demo.launch` + `roslaunch seabotix_alpha_moveit_config moveit_planning_execution.launch` - launches the whole system with controllers compatible with Moveit + the MoveIt! Rviz interface to generate plans. This will let you generate plans in MoveIt! and execute on the simulated robot in Gazebo.
+
+Scripts
+---
+
+- `rosrun seabotix_alpha_description currents.py` - causes currents in the environment based on vehicle pose. Modify the parameters in this script to set different current fields.
+
+- `rosrun seabotix_alpha_description currents_reset.py` - sets the currents back to 0. 
