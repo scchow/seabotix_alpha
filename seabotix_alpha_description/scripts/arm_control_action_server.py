@@ -55,9 +55,9 @@ class ArmActionServer(object):
             # rospy.sleep(time_from_start - start_time)
             # start_time += time_from_start
 
-
+        # TODO: Add more sophisticated plan execution success/failure detection
         self._action_server.set_succeeded()
-        
+
         
 if __name__ == '__main__':
     rospy.init_node('arm_controller')

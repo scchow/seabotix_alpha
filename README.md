@@ -33,6 +33,8 @@ Launch files
 
 - `roslaunch seabotix_alpha_description moveit_demo.launch` + `roslaunch seabotix_alpha_moveit_config moveit_planning_execution.launch` - launches the whole system with controllers compatible with Moveit + the MoveIt! Rviz interface to generate plans. This will let you generate plans in MoveIt! and execute on the simulated robot in Gazebo.
 
+- `roslaunch seabotix_alpha_description uvms_world.launch` + `rosrun seabotix_alpha_description turbulence_experiment.py` - launches the Gazebo environment with the Seabotix vehicle and Alpha arm + controllers for position/joint angle control. The second script adds oscillatory currents to test its stationkeeping ability. Results are logged in `/home/developer/uuv_ws/experiment_logs/<timestamp>`.
+
 Scripts
 ---
 
