@@ -4,6 +4,8 @@
     <arg name="paused" default="false"/>
     <arg name="world_name" default="$(find seabotix_alpha_description)/worlds/valve_manipulation_demo.world"/>
     <arg name="namespace" default="seabotix"/>
+    <arg name="reset_tam" default="false">
+
  
     <!-- use Gazebo's empty_world.launch with uuv_dave_ocean_waves.world -->
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -33,6 +35,7 @@
     <include file="$(find seabotix_control)/launch/joy_velocity.launch">
         <arg name="uuv_name" value="$(arg namespace)" />
         <arg name="model_name" value="seabotix" />
+        <arg name="reset_tam" value="$(arg reset_tam)" />
     </include>  
 
     <!-- use ned frame north east down -->
@@ -72,9 +75,9 @@
     </node>
 
 
-    <!-- <node name="spawn_bop_panel" pkg="gazebo_ros" type="spawn_model"
+    <node name="spawn_bop_panel" pkg="gazebo_ros" type="spawn_model"
           args="-file $(find uuv_gazebo_worlds)/models/bop_panel/model.sdf -sdf -model bop_panel -x 15 -y -10 -z -94.9 ">
-    </node> -->
+    </node>
 
 
 

@@ -41,3 +41,12 @@ Scripts
 - `rosrun seabotix_alpha_description currents.py` - causes currents in the environment based on vehicle pose. Modify the parameters in this script to set different current fields.
 
 - `rosrun seabotix_alpha_description currents_reset.py` - sets the currents back to 0. 
+
+Recomputing the Thruster Allocation Matrix
+---
+
+The simulator precomputes the Jacobian that maps thruster output to vehicle motion.
+This thruster allocation matrix will need to be updated if the vehicle mass/hydrodynamic
+parameters are changed. To do so, run the launch files with the `reset_tam` flag set to true:
+
+`roslaunch seabotix_alpha_description valve_manipulation_demo.launch reset_tam:=true`
