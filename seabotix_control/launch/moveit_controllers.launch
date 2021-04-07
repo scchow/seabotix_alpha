@@ -14,6 +14,7 @@ Also added a position controller down the cascaded PID -->
   <group ns="$(arg uuv_name)">
     <rosparam file="$(find seabotix_control)/config/inertial.yaml" command="load"/>
     <rosparam file="$(find seabotix_control)/config/vel_pid_control.yaml" command="load"/>
+    <rosparam file="$(find seabotix_control)/config/pos_pid_control.yaml" command="load"/>
     <!-- TODO see if we might need  -->
 
     <node pkg="uuv_control_cascaded_pid" type="AccelerationControl.py" name="acceleration_control"
