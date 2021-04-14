@@ -1,0 +1,26 @@
+# These gains are for the joint position controllers of the alpha arm
+controller_config:
+    joint1:
+      controller:
+        p: 12.0
+        i: 0.1
+        d: 0.5
+        sat: 12
+    joint2:
+      controller:
+        p: 12.0
+        i: 0.1
+        d: 0.5
+        sat: 12
+    joint3:
+      controller:
+        p: 12.0
+        i: 0.1
+        d: 0.5
+        sat: 12
+    joint4:
+      controller:
+        p: 12.0
+        i: 0.1
+        d: 0.5
+        sat: 12

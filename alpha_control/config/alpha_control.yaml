@@ -1,25 +1,26 @@
+# These gains are for the joint effort controllers of the alpha arm
 seabotix: #$(arg uuv_name):
     alpha: #$(arg arm_name):
       joint1:
         controller:
           type: effort_controllers/JointEffortController
           joint: alpha/joint1
-          pid: {p: 0, i: 0, d: 0}
+          pid: {p: 24,  d: 0.5, i: 5.0, i_clamp: 1}
       joint2:
         controller:
           type: effort_controllers/JointEffortController
           joint: alpha/joint2
-          pid: {p: 0, i: 0, d: 0}
+          pid: {p: 25,  d: 0.5, i: 5.0, i_clamp: 1}
       joint3:
         controller:
           type: effort_controllers/JointEffortController
           joint: alpha/joint3
-          pid: {p: 0, i: 0, d: 0}
+          pid: {p: 25,  d: 0.5, i: 5.0, i_clamp: 1}
       joint4:
         controller:
           type: effort_controllers/JointEffortController
           joint: alpha/joint4
-          pid: {p: 0, i: 0, d: 0}
+          pid: {p: 25,  d: 0.5, i: 5.0, i_clamp: 1}
       arm_controller:
         type: effort_controllers/JointTrajectoryController
         joints:
@@ -28,7 +29,7 @@ seabotix: #$(arg uuv_name):
           - alpha/joint3
           - alpha/joint4
         gains: # Required because we're controlling an effort interface
-          alpha/joint1: {p: 50,  d: 0, i: 5.0, i_clamp: 1}
-          alpha/joint2: {p: 25,  d: 0, i: 5.0, i_clamp: 1}
-          alpha/joint3: {p: 17.0,  d: 0, i: 0.5, i_clamp: 1}
-          alpha/joint4: {p: 10,  d: 0, i: 0, i_clamp: 1} 
+          alpha/joint1: {p: 25,  d: 0.5, i: 5.0, i_clamp: 1}
+          alpha/joint2: {p: 25,  d: 0.5, i: 5.0, i_clamp: 1}
+          alpha/joint3: {p: 25,  d: 0.5, i: 5.0, i_clamp: 1}
+          alpha/joint4: {p: 25,  d: 0.5, i: 5.0, i_clamp: 1}

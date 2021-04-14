@@ -52,7 +52,7 @@ class JointPositionController:
                         self._controllers[joint] = PIDRegulator(controller_config[tag]['controller']['p'],
                                                                 controller_config[tag]['controller']['i'],
                                                                 controller_config[tag]['controller']['d'],
-                                                                1000)
+                                                                controller_config[tag]['controller']['sat'])
                         self._command_topics[joint] = rospy.Publisher(
                             controller_config[tag]['topic'],
                             Float64,
@@ -61,6 +61,7 @@ class JointPositionController:
                         # Setting the starting reference to the home position
                         # in the robot parameters file
                         self._reference_pos[joint] = deepcopy(self._arm_interface.home[joint])
+                        # rospy.logwarn("Joint {} PID: {},{},{}".format(joint, controller_config[tag]['controller']['p'], controller_config[tag]['controller']['i'], controller_config[tag]['controller']['d']))
                     except:
                         raise rospy.ROSException('Error while trying to setup controller for joint <%s>' % joint)
 
