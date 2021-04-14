@@ -35,13 +35,13 @@ class TurbulenceExperimentNode(object):
     def __init__(self, node_name):
 
         # Period of sinusoidal turbulence
-        self.period = 5
+        self.period = 10
 
         # Omega - angular frequency
         self.w = 2*pi/self.period
 
         # Maximum current speed 
-        self.max_vel = 0.0 
+        self.max_vel = 0.0
 
         # Delay Time: Time to wait before starting currents
         self.delay_time = 5.0
@@ -96,10 +96,13 @@ class TurbulenceExperimentNode(object):
         self.rate = rospy.Rate(10.0)
         self.start_time = self.get_time() # time in seconds
 
-        while not rospy.is_shutdown():
-            self.loop()
-            self.rate.sleep()
-
+        try:
+            while not rospy.is_shutdown():
+                self.loop()
+                self.rate.sleep()
+        except rospy.exceptions.ROSInterruptException as e:
+            print("ROS Interrupt Exception")
+            self.__del__()
 
 
     def __del__(self):
@@ -129,12 +132,16 @@ class TurbulenceExperimentNode(object):
         x, y, z, roll, pitch, yaw))
 
         # Publish goal vehicle and arm poses
+        # if self.get_time() > self.start_time + self.delay_time + 10.0:
         self.pub_goal_arm_pose()
+
         self.pub_goal_vehicle_pose()
 
         # Publish current pose
         self.current_info = self.current_function()
         self.set_current_velocity(*self.current_info)
+
+        print(self.get_time())
 
     def instantiate_logs(self):
         """ Creates the log directories for the runs and
@@ -143,7 +150,7 @@ class TurbulenceExperimentNode(object):
 
         # Log file
         timestamp = datetime.now().strftime("%Y-%m-%dT%H%M%S")
-        self.log_dir = os.path.join("home", "developer", "uuv_ws", "experiment_logs", timestamp)
+        self.log_dir = os.path.join("experiment_logs", timestamp)
 
         # Create Log directory if it does not exist
         try:
@@ -169,7 +176,8 @@ class TurbulenceExperimentNode(object):
         header.stamp = rospy.Time.now()
 
         position = Point(20.5, -10, -85)
-        yaw = 0
+        # position = Point(20.5, -10, -85)
+        yaw = pi
 
         # Converting yaw to quaternion
         # See https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles
@@ -182,13 +190,11 @@ class TurbulenceExperimentNode(object):
 
     def pub_goal_arm_pose(self):
         current_time = self.get_time()
-        time_to_goal = 20.0
-        scale = min(1.0, current_time / time_to_goal)
 
         header = Header()
         header.stamp = rospy.Time.now()
         joint_names = ['alpha/joint1', 'alpha/joint2', 'alpha/joint3', 'alpha/joint4']
-        position = [0.0, scale*pi/2, scale*pi/2, 0.0]
+        position = [0.0, pi/2, pi/2, 0.0]
         velocity = [0, 0, 0, 0]
         effort = [0, 0, 0, 0]
         joint_state_msg = JointState(header, joint_names, position, velocity, effort)
