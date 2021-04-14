@@ -21,11 +21,11 @@
     The original values, [0.0822, -0.00773, 0.3872] however, seem to
     assume NWU (otherwise cob is below cog?).
     -->
-    <xacro:property name="cob" value="0.0 0.0 0.5"/>
+    <xacro:property name="cob" value="0.0 0.0 0.05"/>
 
     <!-- Volume, see p.31 in Berg2012 -->
     <!-- <xacro:property name="volume" value="1.83826"/> -->
-    <xacro:property name="volume" value="0.0951"/>
+    <xacro:property name="volume" value="0.035"/>
 
     <xacro:macro name="seabotix_hydro_model" params="namespace">
         <link name="${namespace}/base_link">

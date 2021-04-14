@@ -77,7 +77,7 @@ class JointPositionController:
                         self._controllers[joint] = PIDRegulator(controller_config[tag]['controller']['p'],
                                                                 controller_config[tag]['controller']['i'],
                                                                 controller_config[tag]['controller']['d'],
-                                                                1000)
+                                                                controller_config[tag]['controller']['sat'])
                         self._command_topics[joint] = rospy.Publisher(
                             controller_config[tag]['topic'],
                             Float64,

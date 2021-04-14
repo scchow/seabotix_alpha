@@ -16,6 +16,7 @@ Also added a position controller down the cascaded PID -->
   <group ns="$(arg uuv_name)">
     <rosparam file="$(find seabotix_control)/config/inertial.yaml" command="load"/>
     <rosparam file="$(find seabotix_control)/config/vel_pid_control.yaml" command="load"/>
+    <rosparam file="$(find seabotix_control)/config/pos_pid_control.yaml" command="load"/>
     <!-- TODO see if we might need  -->
 
     <node pkg="uuv_control_cascaded_pid" type="AccelerationControl.py" name="acceleration_control"
@@ -23,13 +24,13 @@ Also added a position controller down the cascaded PID -->
       <param name="tf_prefix" type="string" value="$(arg uuv_name)/" />
     </node>
 
-    <node pkg="uuv_control_cascaded_pid" type="VelocityControl.py" name="velocity_control"
+    <node pkg="seabotix_control" type="VelocityControl.py" name="velocity_control"
         output="screen">
       <remap from="odom" to="/$(arg uuv_name)/pose_gt"/>
       <remap from="cmd_accel" to="/$(arg uuv_name)/cmd_accel"/>
     </node>
     
-    <node pkg="uuv_control_cascaded_pid" type="PositionControl.py" name="position_control"
+    <node pkg="seabotix_control" type="PositionControl.py" name="position_control"
         output="screen">
       <remap from="odom" to="/$(arg uuv_name)/pose_gt"/>
       <remap from="cmd_pose" to="/$(arg uuv_name)/cmd_pose"/>

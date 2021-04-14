@@ -41,29 +41,14 @@
         controller_config:
           joint1:
             topic: /$(arg uuv_name)/$(arg arm_name)/joint1/controller/command
-            controller:
-              p: 50.0
-              i: 0
-              d: 5.0
           joint2:
             topic: /$(arg uuv_name)/$(arg arm_name)/joint2/controller/command
-            controller:
-              p: 25.0
-              i: 0
-              d: 5.0
           joint3:
             topic: /$(arg uuv_name)/$(arg arm_name)/joint3/controller/command
-            controller:
-              p: 17.0
-              i: 0
-              d: 0.5
           joint4:
             topic: /$(arg uuv_name)/$(arg arm_name)/joint4/controller/command
-            controller:
-              p: 10.0
-              i: 0.0
-              d: 0.0
       </rosparam>
+      <rosparam command="load" file="$(find alpha_control)/config/alpha_position_pid.yaml" />
     </node>
   </group>
 </launch>
