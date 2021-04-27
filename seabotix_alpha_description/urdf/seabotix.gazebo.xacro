@@ -25,7 +25,7 @@
 
     <!-- Volume, see p.31 in Berg2012 -->
     <!-- <xacro:property name="volume" value="1.83826"/> -->
-    <xacro:property name="volume" value="0.035"/>
+    <xacro:property name="volume" value="0.0216"/>
 
     <xacro:macro name="seabotix_hydro_model" params="namespace">
         <link name="${namespace}/base_link">
@@ -41,20 +41,22 @@
                 <type>fossen</type>
                 <!-- Added mass: see p.28 in Berg2012 -->
                 <added_mass>
-                    ${779.79*mass_ratio} ${-6.8773*mass_ratio} ${-103.32*mass_ratio}  ${8.5426*mass_ratio} ${-165.54*mass_ratio} ${-7.8033*mass_ratio} 
-                    -${6.8773*mass_ratio}    ${1222*mass_ratio}   ${51.29*mass_ratio}  ${409.44*mass_ratio} ${-5.8488*mass_ratio}  ${62.726*mass_ratio} 
-                    -${103.32*mass_ratio}   ${51.29*mass_ratio}  ${3659.9*mass_ratio}  ${6.1112*mass_ratio} ${-386.42*mass_ratio}  ${10.774*mass_ratio} 
-                    ${8.5426*mass_ratio}  ${409.44*mass_ratio}  ${6.1112*mass_ratio}   ${534.9*mass_ratio} ${-10.027*mass_ratio}  ${21.019*mass_ratio} 
-                    -${165.54*mass_ratio} ${-5.8488*mass_ratio} ${-386.42*mass_ratio} ${-10.027*mass_ratio}  ${842.69*mass_ratio} ${-1.1162*mass_ratio} 
-                    -${7.8033*mass_ratio}  ${62.726*mass_ratio}  ${10.775*mass_ratio}  ${21.019*mass_ratio} ${-1.1162*mass_ratio}  ${224.32*mass_ratio} 
+                    8.10 -0.07 -1.07 0.09 -1.71 -0.08
+                    -0.07 12.69 0.53 4.25 -0.06 0.65
+                    -1.07 0.53 38.02 0.06 -4.01 0.11
+                    0.09 4.25 0.06 5.56 -0.10 0.22
+                    -1.71 -0.06 -4.01 -0.10 8.75 -0.01
+                    -0.08 0.65 0.11 0.22 -0.01 2.33
                 </added_mass>
-                <!-- Linear damping: see p.31 in Berg2012 -->
+                <!-- Linear damping: Hannah's values negated because these should be negative
+                for some reason -->
                 <linear_damping>
-                    ${-74.82*mass_ratio} ${-69.48*mass_ratio} ${-728.4*mass_ratio} ${-268.8*mass_ratio} ${-309.77*mass_ratio} ${-105*mass_ratio}
+                    -3.4 -4.6 -52.9 -4.5 -8.0 -2.7
                 </linear_damping>
-                <!-- Non-linear damping: see p.30 in Berg2012 -->
+                <!-- Linear damping: Hannah's values negated because these should be negative
+                for some reason -->
                 <quadratic_damping>
-                    ${-748.22*mass_ratio} ${-992.53*mass_ratio} ${-1821.01*mass_ratio} ${-672*mass_ratio} ${-774.44*mass_ratio} ${-523.27*mass_ratio}
+                    -34.4 -65.9 -132.3 -11.4 -20 -13.5
                 </quadratic_damping>
             </hydrodynamic_model>
         </link>
