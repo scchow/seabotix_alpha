@@ -25,11 +25,11 @@
 
     <!-- Volume, see p.31 in Berg2012 -->
     <!-- <xacro:property name="volume" value="1.83826"/> -->
-    <xacro:property name="volume" value="0.0216"/>
+    <xacro:property name="volume" value="0.02175"/>
 
     <xacro:macro name="seabotix_hydro_model" params="namespace">
         <link name="${namespace}/base_link">
-            <neutrally_buoyant>1</neutrally_buoyant>
+            <neutrally_buoyant>0</neutrally_buoyant>
             <volume>${volume}</volume>
             <box>
                 <width>${width}</width>
