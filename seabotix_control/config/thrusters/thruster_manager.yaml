@@ -4,9 +4,13 @@ thruster_manager:
   thruster_topic_prefix: thrusters/
   thruster_topic_suffix: /input
   thruster_frame_base: thruster_
-  max_thrust: 177.5 # 18.1 kg f to Newtons
+  max_thrust: 177.5 # 18.1 kg f to Newtons: http://www.teledynemarine.com/vlbv300
   timeout: -1
   update_rate: 50
   conversion_fcn: proportional
   conversion_fcn_params:
-    gain: 0.00031
+    # This MUST be changed in tandem with the rotor_constant
+    # defined in seabotix_actuators.xacro
+    # This is used to convert thruster force to angular velocity 
+    # of the propeller to figure out how fast it should spin.
+    gain: 0.0075 

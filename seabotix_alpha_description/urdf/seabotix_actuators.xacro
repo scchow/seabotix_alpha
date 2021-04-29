@@ -21,12 +21,18 @@
   <!-- Thruster joint and link snippet -->
   <xacro:macro name="thruster_macro"
     params="namespace thruster_id *origin">
+    <!-- 
+    rotor_constant MUST be changed in tandem with 
+    conversion_fcn_params/gain defined in thruster_manager.yaml
+    This is used to convert angular velocity to thruster force in Gazebo
+    to figure out how much force the thruster imparts. 
+    -->
     <xacro:thruster_module_first_order_basic_fcn_macro
       namespace="${namespace}"
       thruster_id="${thruster_id}"
       mesh_filename="${prop_mesh_file}"
       dyn_time_constant="0.05"
-      rotor_constant="0.00031">
+      rotor_constant="0.0075">
       <xacro:insert_block name="origin"/>
     </xacro:thruster_module_first_order_basic_fcn_macro>
   </xacro:macro>

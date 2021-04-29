@@ -25,6 +25,7 @@
 
     <!-- Volume, see p.31 in Berg2012 -->
     <!-- <xacro:property name="volume" value="1.83826"/> -->
+    <!-- Actual volume = 0.095 -->
     <xacro:property name="volume" value="0.02175"/>
 
     <xacro:macro name="seabotix_hydro_model" params="namespace">
