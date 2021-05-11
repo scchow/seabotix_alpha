@@ -3,7 +3,7 @@ position_control/pos_i: 0.5000
 position_control/pos_d: 1.0000
 position_control/pos_sat: 0.75
 
-position_control/rot_p: 0.05
-position_control/rot_i: 0.000
-position_control/rot_d: 0.0
-position_control/rot_sat: 0.05
+position_control/rot_p: 0.3
+position_control/rot_i: 0.001
+position_control/rot_d: 0.001
+position_control/rot_sat: 2.0

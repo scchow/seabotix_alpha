@@ -1,0 +1,64 @@
+<!-- 
+Starts the [thruster allocator node](https://github.com/uuvsimulator/uuv_simulator/blob/master/uuv_control/uuv_thruster_manager/scripts/thruster_allocator.py) 
+with the configuration for the Seabotix vehicle.
+
+The thruster allocator uses the [thruster allocation matrix](seabotix_control/config/thrusters/TAM.yaml)
+to convert the [geometry_msgs/Wrench message](https://docs.ros.org/lunar/api/geometry_msgs/html/msg/Wrench.html) from the `/<uuv_name>/thruster_manager/input` topic
+into reference input for each thruster unit.
+
+> **Create or reset the thruster allocation matrix**
+
+In case the thruster allocation matrix
+has to be created or recalculated, start the simulation as follows
+
+```
+roslaunch uuv_gazebo_worlds ocean_waves.launch
+roslaunch seabotix_alpha_description upload_seabotix.launch
+```
+
+and then start the thruster manager with the `reset_tam` set to true. The file will be stored 
+under the filename provided with the path under the input `tam_file` as follows
+
+```
+roslaunch seabotix_control start_thruster_manager.launch reset_tam:=true
+```
+
+> **Example**
+
+Start the simulation, spawn the Seabotix vehicle and then start the thruster allocation node as follows
+
+```
+roslaunch uuv_gazebo_worlds ocean_waves.launch
+roslaunch seabotix_alpha_description upload_seabotix.launch
+roslaunch seabotix_control start_thruster_manager.launch 
+```
+
+!!! note
+    
+    A controller node or similar must publish the geometry_msgs/Wrench message in the 
+    `/<uuv_name>/thruster_manager/input` topic for the vehicle to move.
+-->
+
+<!-- This launch file was modified from [the RexROV vehicle's launch file](https://github.com/uuvsimulator/rexrov2/blob/master/rexrov2_control/launch/start_thruster_manager.launch) -->
+
+<launch>
+  <arg name="model_name" default="seabotix" doc="Name of the model of the vehicle"/>
+  <arg name="uuv_name" default="$(arg model_name)" doc="Namespace for the vehicle instance"/>
+  <arg name="base_link" default="base_link" doc="Name of the base link frame"/>
+  <arg name="timeout" default="-1" />
+  <arg name="reset_tam" default="false"/>
+  <arg name="output_dir" default="$(find seabotix_control)/config/thrusters"/>
+  <arg name="config_file" default="$(find seabotix_control)/config/thrusters/thruster_manager.yaml"/>
+  <arg name="tam_file" default="$(find seabotix_control)/config/thrusters/TAM.yaml"/>
+
+  <include file="$(find uuv_thruster_manager)/launch/thruster_manager.launch">
+    <arg name="model_name" value="$(arg model_name)"/>
+    <arg name="uuv_name" value="$(arg uuv_name)"/>
+    <arg name="base_link" value="$(arg base_link)"/>
+    <arg name="timeout" value="$(arg timeout)"/>
+    <arg name="reset_tam" value="$(arg reset_tam)"/>
+    <arg name="output_dir" value="$(arg output_dir)"/>
+    <arg name="config_file" value="$(arg config_file)"/>
+    <arg name="tam_file" value="$(arg tam_file)"/>
+   </include>
+</launch>
